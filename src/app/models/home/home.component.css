@@ -1,0 +1,90 @@
+.question {
+    margin-top: 5%;
+}
+
+.question-title {
+    font-size: 25px;
+    color: blacks;
+    font-weight: bold;
+}
+
+.question-bloc {
+    margin-bottom: 5%;
+}
+
+.table-head {
+    background-color: #E7E6E6;
+}
+
+.devis {
+    padding: 2%;
+    box-shadow: 1px 1px 12px #555;
+}
+
+.devis-info-client {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+
+.date-devis {
+    display: flex;
+    flex-direction: row;
+}
+
+.date-devis-bloc {
+    border: 1px solid #9e9e9e;
+    padding: 0.7%;
+    padding-left: 3%;
+    padding-right: 3%;
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+
+.date-titre {
+    background-color: #E7E6E6;
+}
+
+.date-devis-bloc p {
+    display: contents;
+}
+
+
+input {
+    border: 0px;
+    background-color: #dcecfb77;
+}
+
+.total,
+.total-bloc {
+    margin-top: 5%;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+}
+
+
+
+.total-bloc-titre {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #E7E6E6;
+    border: 1px solid #9e9e9e;
+    padding: 3%;
+}
+
+.total-bloc-prix {
+    border: 1px solid #9e9e9e;
+    padding: 3%;
+}
+
+.total-bloc-one,
+.total-bloc-two {
+    padding: 0;
+}
+p{
+    margin: 0;
+    padding: 0;
+}

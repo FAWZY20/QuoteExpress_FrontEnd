@@ -1,0 +1,168 @@
+<div>
+    <div>
+        <app-header></app-header>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="question">
+                <div class="question-bloc">
+                    <p class="question-title">Un outil unique de devis gratuit</p>
+                    <p class="question-text"><span style="font-weight: bold;">QuoteExpres a développé un outil unique et
+                            très simple pour générer un devis en quelques clics.</span>Cette interface vous permet de
+                        tout personnaliser (nom de l'entreprise, montant, prestation).
+                        Vous pouvez récupérer ensuite votre devis en PDF sans laisser vos coordonnées ou recevoir une
+                        version par email si vous souhaitez enregistrer une copie. Une excellente alternative à des
+                        modèles de devis gratuits sur Word ou Excel. </p>
+                </div>
+                <div class="question-bloc">
+                    <p class="question-title">Quand faut-il établir un devis ?</p>
+                    <p class="question-text">Avant toute acquisition ou commande de service, vos clients cherchent à
+                        avoir une idée précise du
+                        prix de
+                        votre produit ou service. La divulgation des tarifs est donc essentielle. Ces tarifs seront
+                        ensuite
+                        confirmés via un bon de commande, qui enregistre également les quantités ou mesures, la
+                        disponibilité du
+                        produit, ses caractéristiques, ainsi que les frais de livraison. Bien que le bon de commande ne
+                        soit
+                        pas
+                        obligatoire, il sert de garantie pour prévenir tout litige éventuel.
+                        <br />
+                        <br />
+                        Dans le cas où le produit ou service que vous proposez est complexe et personnalisé,
+                        l'établissement
+                        d'un
+                        devis devient impératif. Ce dernier détaille les travaux à réaliser, les délais prévus, et
+                        fournit
+                        une
+                        estimation du prix final. En signant le devis avec la mention "Bon pour travaux", vous vous
+                        engagez
+                        formellement en tant que fournisseur. De même, votre client s'engage dès lors qu'il appose sa
+                        signature sur
+                        le devis.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div>
+            <div class="devis col-9">
+                <form>
+                    <div class="devis-info col-lg">
+                        <div>
+                            <input type="text" placeholder="votre nom / société">
+                        </div>
+                        <div>
+                            <input type="text" placeholder="Adresse">
+                        </div>
+                        <div class="adresse">
+                            <div>
+                                <input type="text" placeholder="Code postal">
+                            </div>
+                            <div>
+                                <input type="text" placeholder="Ville">
+                            </div>
+                        </div>
+                        <div>
+                            <label for="Siret">Siret : </label>
+                            <input type="text" id="Siret" placeholder="820 339 265 20365">
+                        </div>
+                        <div>
+                            <label for="TVA">N° TVA :</label>
+                            <input type="text" id="TVA" placeholder="FR45242563863">
+                        </div>
+                        <div>
+                            <label for="tel">Tél :</label>
+                            <input type="text" id="tel" placeholder="0142563825">
+                        </div>
+                    </div>
+                    <div class="devis-info-client col-lg">
+                        <div>
+                            <input type="text" placeholder="Nom client">
+                        </div>
+                        <div>
+                            <input type="text" placeholder="Adresse">
+                        </div>
+                        <div class="adresse">
+                            <div>
+                                <input type="text" placeholder="Code postal">
+                            </div>
+                            <div>
+                                <input type="text" placeholder="Ville">
+                            </div>
+                        </div>
+                        <div>
+                            <label for="Siret">Siret : </label>
+                            <input type="text" id="Siret" placeholder="820 339 265 20365">
+                        </div>
+                        <div>
+                            <label for="tel">Tél :</label>
+                            <input type="text" id="tel" placeholder="0142563825">
+                        </div>
+                    </div>
+                    <div class="date-devis">
+                        <div class="date-devis-bloc date-titre">
+                            <p>Date du devis</p>
+                        </div>
+                        <div class="date-devis-bloc">
+                            <input type="text" placeholder="26/03/2024">
+                        </div>
+                    </div>
+                    <div>
+                        <table class="table table-bordered">
+                            <thead class="table-head">
+                                <tr>
+                                    <th scope="col">Description</th>
+                                    <th scope="col">Quantité</th>
+                                    <th scope="col">Prix unitaire HT</th>
+                                    <th scope="col">Prix total HT</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <input type="text" placeholder="TITRE DESCITION"><br />
+                                        <input type="text" placeholder="Description presentation">
+                                    </td>
+                                    <td><input type="number" placeholder="1"></td>
+                                    <td><input type="number" placeholder="0.00"> €</td>
+                                    <td><input type="number" placeholder="0.00"> €</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="total">
+                        <div class="col-lg-6">
+                            <input type="text" placeholder="Informations complémentaires (IBAN, BIC...)">
+                        </div>
+                        <div class="col-lg-6 total-bloc">
+                            <div class="col-lg-3 total-bloc-one">
+                                <div class="total-bloc-titre">
+                                    <p>Total HT</p>
+                                </div>
+                                <div class="total-bloc-titre">
+                                    <p>TVA( %)</p>
+                                </div>
+                                <div class="total-bloc-titre">
+                                    <p>Total TTC</p>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 total-bloc-two">
+                                <div class="total-bloc-prix">
+                                    <p>€</p>
+                                </div>
+                                <div class="total-bloc-prix">
+                                    <p>€</p>
+                                </div>
+                                <div class="total-bloc-prix">
+                                    <p>€</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
