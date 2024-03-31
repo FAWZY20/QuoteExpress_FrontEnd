@@ -46,7 +46,7 @@
         </div>
     </div>
     <div class="container-fluid">
-        <div>
+        <div class="bloc-devis">
             <div class="devis col-9">
                 <form>
                     <div class="devis-info col-lg">
@@ -106,7 +106,7 @@
                             <p>Date du devis</p>
                         </div>
                         <div class="date-devis-bloc">
-                            <input type="text" placeholder="26/03/2024">
+                            <input size="10" type="text" placeholder="26/03/2024">
                         </div>
                     </div>
                     <div>
@@ -137,7 +137,7 @@
                             <input type="text" placeholder="Informations complémentaires (IBAN, BIC...)">
                         </div>
                         <div class="col-lg-6 total-bloc">
-                            <div class="col-lg-3 total-bloc-one">
+                            <div class="col-lg-6 total-bloc-one">
                                 <div class="total-bloc-titre">
                                     <p>Total HT</p>
                                 </div>
@@ -148,7 +148,7 @@
                                     <p>Total TTC</p>
                                 </div>
                             </div>
-                            <div class="col-lg-3 total-bloc-two">
+                            <div class="col-lg-6 total-bloc-two">
                                 <div class="total-bloc-prix">
                                     <p>€</p>
                                 </div>
@@ -162,6 +162,69 @@
                         </div>
                     </div>
                 </form>
+            </div>
+            <div class="col-lg-3">
+                <div class="reglage">
+                    <div class="reglage-bloc-title col">
+                        <p class="reglage-title">Réglages</p>
+                    </div>
+                    <div class="reglage-bloc-btn">
+                        <div class="reglage-bloc">
+                            <div class="col">
+                                <p>Activer la TVA</p>
+                            </div>
+                            <div class="col reglage-col">
+                                <button type="button" class="reglage-btn btn btn-light">Non</button>
+                                <button type="button" class="reglage-btn btn-right btn btn-light">Oui</button>
+                            </div>
+                        </div>
+                        <div >
+                            <div class="reglage-bloc">
+                                <div class="col">
+                                    <p>Taux TVA variable par ligne</p>
+                                </div>
+                                <div class="col reglage-col">
+                                    <button type="button" class="reglage-btn btn btn-light">Non</button>
+                                    <button type="button" class="reglage-btn btn-right btn btn-light">Oui</button>
+                                </div>
+                            </div>
+                            <div class="reglage-bloc">
+                                <div class="col">
+                                    <p>Taux TVA</p>
+                                </div>
+                                <div class="col reglage-col">
+                                   <input size="10" type="text" placeholder="20">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="reglage-bloc">
+                            <div class="col">
+                                <p>Activer la colonne "Quantité"</p>
+                            </div>
+                            <div class="col reglage-col">
+                                <button type="button" class="reglage-btn btn btn-light">Non</button>
+                                <button type="button" class="reglage-btn btn-right btn btn-light">Oui</button>
+                            </div>
+                        </div>
+                        <div class="reglage-bloc">
+                            <div class="col">
+                                <p>Activer la colonne "Unité"</p>
+                            </div>
+                            <div class="col reglage-col">
+                                <button type="button" class="reglage-btn btn btn-light">Non</button>
+                                <button type="button" class="reglage-btn btn-right btn btn-light">Oui</button>
+                            </div>
+                        </div>
+                        <div class="reglage-bloc">
+                            <div class="col">
+                                <p>Devise</p>
+                            </div>
+                            <div class="colreglage-col">
+                               <input size="10" type="text" placeholder="€">
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

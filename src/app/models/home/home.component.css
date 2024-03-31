@@ -88,3 +88,49 @@ p{
     margin: 0;
     padding: 0;
 }
+
+.bloc-devis{
+    display: flex;
+    flex-direction: row;
+}
+
+.reglage{
+    box-shadow: 1px 1px 12px #555;
+}
+
+.reglage-bloc{
+    font-size: 13px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    margin-bottom: 3%;
+    
+}
+
+.reglage-bloc-btn{
+    padding-top: 5%;
+    padding-bottom: 5%;
+}
+
+.reglage-col{
+    display: flex;
+    justify-content: flex-end;
+}
+
+.reglage-btn{
+    font-size: 13px;
+    border: 1px solid black;
+    border-radius: 0;
+}
+
+.btn-right{
+    border-left-width: 0;
+}
+
+.reglage-bloc-title{
+    background-color: #E6EBF3;
+    font-size: 25px;
+    font-weight: bold;
+    padding: 5%;
+}
