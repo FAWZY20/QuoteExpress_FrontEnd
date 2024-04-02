@@ -9,16 +9,19 @@ export class HomeComponent {
   quantite: boolean = true;
   tva: boolean = true;
   tvaLigne: boolean = false;
+  tvaTaux:string = "20"
+  uniteValue: string = "€";
+  unite: boolean = false;
 
 
   donneeTab: any[] = [
-    { id: 1, titre: '', description: '', quantite:'1', prixUnitaire:'', tva:'20', prixTotal:'' }
+    { id: 1, titre: '', description: '', quantite:'1',unite:'' , prixUnitaire:'', tva:'20', prixTotal:'' }
   ]
 
   constructor(){}
 
   addColumn(){
-    const nouvelleLigne = { id: this.donneeTab.length + 1, titre: '', description: '', quantite:'1', prixUnitaire:'', tva:'20', prixTotal:'' };
+    const nouvelleLigne = { id: this.donneeTab.length + 1, titre: '', description: '', quantite:'1',unite:'' , prixUnitaire:'', tva:'20', prixTotal:'' };
     this.donneeTab.push(nouvelleLigne);
   }
 
@@ -33,6 +36,14 @@ export class HomeComponent {
   
   deleteColumQuantite(){
     this.quantite= false;
+  }
+
+  addColumnUnite(){
+    this.unite = true;
+  }
+
+  deleteColumnUnite(){
+    this.unite = false;
   }
 
   addTva(){
@@ -53,5 +64,13 @@ export class HomeComponent {
 
   deleteTvaLigne(){
     this.tvaLigne = false;
+  }
+
+  changeUnitee(unitee: string): void{
+    this.uniteValue = unitee;
+  }
+
+  changeTaux(taux: string): void{
+    this.tvaTaux = taux;
   }
 }
