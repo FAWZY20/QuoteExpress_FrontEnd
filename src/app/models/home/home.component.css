@@ -155,3 +155,8 @@ p{
     flex-direction: row;
     justify-content: space-around;
 }
+
+.btn-telecharger{
+    display: grid;
+    margin-top: 20px;
+}

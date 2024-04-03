@@ -159,22 +159,26 @@
                         </div>
                         <div class="col-lg-6 total-bloc">
                             <div class="col-lg-6 total-bloc-one">
-                                <div class="total-bloc-titre">
-                                    <p>Total HT</p>
-                                </div>
-                                <div class="total-bloc-titre">
-                                    <p>TVA({{tvaTaux}} %)</p>
+                                <div *ngIf="tva">
+                                    <div class="total-bloc-titre">
+                                        <p>Total HT</p>
+                                    </div>
+                                    <div class="total-bloc-titre">
+                                        <p>TVA({{tvaTaux}} %)</p>
+                                    </div>
                                 </div>
                                 <div class="total-bloc-titre">
                                     <p>Total TTC</p>
                                 </div>
                             </div>
                             <div class="col-lg-6 total-bloc-two">
-                                <div class="total-bloc-prix">
-                                    <p>{{uniteValue}}</p>
-                                </div>
-                                <div class="total-bloc-prix">
-                                    <p>{{uniteValue}}</p>
+                                <div *ngIf="tva">
+                                    <div class="total-bloc-prix">
+                                        <p>{{uniteValue}}</p>
+                                    </div>
+                                    <div class="total-bloc-prix">
+                                        <p>{{uniteValue}}</p>
+                                    </div>
                                 </div>
                                 <div class="total-bloc-prix">
                                     <p>{{uniteValue}}</p>
@@ -250,11 +254,14 @@
                             <div class="col">
                                 <p>Devise</p>
                             </div>
-                            <div class="colreglage-col">
+                            <div class="col reglage-col">
                                 <input size="10" [(ngModel)]="uniteValue" (ngModelChange)="changeUnitee($event)" type="text"  placeholder="{{uniteValue}}">
                             </div>
                         </div>
                     </div>
+                </div>
+                <div class="btn-telecharger">
+                    <button type="button" class="btn btn-warning">Télécharger mon devis <img src="../../../assets/icon/download.svg" alt=""> </button>
                 </div>
             </div>
         </div>
