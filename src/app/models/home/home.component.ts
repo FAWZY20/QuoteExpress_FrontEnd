@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
+import { Devis } from 'src/app/modelData/devis';
+import { map } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -6,71 +8,98 @@ import { Component } from '@angular/core';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
+  devis: Devis;
   quantite: boolean = true;
   tva: boolean = true;
   tvaLigne: boolean = false;
-  tvaTaux:string = "20"
+  tvaTaux: number = 20
   uniteValue: string = "€";
   unite: boolean = false;
-
+  totalHt: number = 0;
+  totalTva:number = 0;
 
   donneeTab: any[] = [
-    { id: 1, titre: '', description: '', quantite:'1',unite:'' , prixUnitaire:'', tva:'20', prixTotal:'' }
-  ]
+    { id: 1, titre: '', description: '', quantite: 1, unite: '', prixUnitaire: 0, prixTotal: 0, tva: 20 }
+  ];
 
-  constructor(){}
-
-  addColumn(){
-    const nouvelleLigne = { id: this.donneeTab.length + 1, titre: '', description: '', quantite:'1',unite:'' , prixUnitaire:'', tva:'20', prixTotal:'' };
-    this.donneeTab.push(nouvelleLigne);
+  constructor() {
+    this.devis = new Devis();
   }
 
-  deleteColumn(id:number){
+  calculPrixTotalHT(donne: any) {
+    let total = donne.quantite * donne.prixUnitaire;
+    donne.prixTotal = total
+  
+    this.totalHt = 0;
+
+    this.donneeTab.forEach((item: any) => {
+      this.totalHt += item.prixTotal;
+    });
+  }
+
+  calculTva(){
+    this.totalTva = this.totalHt * this.tvaTaux /100
+  }
+
+  onSubmit(): void {
+
+  }
+
+  addColumn() {
+    const nouvelleLigne = { id: this.donneeTab.length + 1, titre: '', description: '', quantite: 1, unite: '', prixUnitaire: 0, tva: 20, prixTotal: 0 };
+
+    this.donneeTab.push(nouvelleLigne);
+  
+    localStorage.setItem('mapData', JSON.stringify(this.donneeTab));
+  }
+
+  deleteColumn(id: number) {
     this.donneeTab = this.donneeTab.filter(resulte => resulte.id !== id);
   }
 
-  addColumQuantite(){
+  addColumQuantite() {
     this.quantite = true;
   }
 
-  
-  deleteColumQuantite(){
-    this.quantite= false;
+
+  deleteColumQuantite() {
+    this.quantite = false;
   }
 
-  addColumnUnite(){
+  addColumnUnite() {
     this.unite = true;
   }
 
-  deleteColumnUnite(){
+  deleteColumnUnite() {
     this.unite = false;
   }
 
-  addTva(){
-  this.tva = true;
-  console.log(this.tva);
-  
+  addTva() {
+    this.tva = true;
+    console.log(this.tva);
+
   }
 
-  deleteTva(){
+  deleteTva() {
     this.tva = false;
     console.log(this.tva);
   }
 
 
-  addTvaLigne(){
+  addTvaLigne() {
     this.tvaLigne = true;
   }
 
-  deleteTvaLigne(){
+  deleteTvaLigne() {
     this.tvaLigne = false;
   }
 
-  changeUnitee(unitee: string): void{
+  changeUnitee(unitee: string): void {
     this.uniteValue = unitee;
   }
 
-  changeTaux(taux: string): void{
+  changeTaux(taux: number): void {
     this.tvaTaux = taux;
   }
+
 }

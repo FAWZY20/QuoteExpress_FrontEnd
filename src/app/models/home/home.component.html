@@ -48,57 +48,70 @@
     <div class="container-fluid">
         <div class="bloc-devis">
             <div class="devis col-9">
-                <form>
+                <form (ngSubmit)="onSubmit()" #devisForm="ngForm">
                     <div class="devis-info col-lg">
                         <div>
-                            <input type="text" placeholder="votre nom / société">
+                            <input type="text" placeholder="votre nom / société" name="nomSociete"
+                                [(ngModel)]="devis.societe" required #societe="ngModel">
                         </div>
                         <div>
-                            <input type="text" placeholder="Adresse">
+                            <input type="text" placeholder="Adresse" name="AdresseSociete"
+                                [(ngModel)]="devis.adresseSociete" required #adresseSociete="ngModel">
                         </div>
                         <div class="adresse">
                             <div>
-                                <input type="text" placeholder="Code postal">
+                                <input type="text" placeholder="Code postal" name="CodePostalSociete"
+                                    [(ngModel)]="devis.codePostalSociete" required #codePostalSociete="ngModel">
                             </div>
                             <div>
-                                <input type="text" placeholder="Ville">
+                                <input type="text" placeholder="Ville" name="VilleSociete"
+                                    [(ngModel)]="devis.villeSociete" required #villeSociete="ngModel">
                             </div>
                         </div>
                         <div>
                             <label for="Siret">Siret : </label>
-                            <input type="text" id="Siret" placeholder="820 339 265 20365">
+                            <input type="text" id="Siret" placeholder="820 339 265 20365" name="siretSociete"
+                                [(ngModel)]="devis.siretSociete" required #siretSociete="ngModel">
                         </div>
                         <div>
                             <label for="TVA">N° TVA :</label>
-                            <input type="text" id="TVA" placeholder="FR45242563863">
+                            <input type="text" id="TVA" placeholder="FR45242563863" name="tvaSociete"
+                                [(ngModel)]="devis.tvaSociete" required #tvaSociete="ngModel">
                         </div>
                         <div>
                             <label for="tel">Tél :</label>
-                            <input type="text" id="tel" placeholder="0142563825">
+                            <input type="text" id="tel" placeholder="0142563825" name="numeroSociete"
+                                [(ngModel)]="devis.telSociete" required #telSociete="ngModel">
                         </div>
                     </div>
                     <div class="devis-info-client col-lg">
                         <div>
-                            <input type="text" placeholder="Nom client">
+                            <input type="text" placeholder="Nom client" name="nomClient" [(ngModel)]="devis.nomClient"
+                                required #nomClient="ngModel">
                         </div>
                         <div>
-                            <input type="text" placeholder="Adresse">
+                            <input type="text" placeholder="Adresse" name="adresseClient"
+                                [(ngModel)]="devis.adresseClient" required #adresseClient="ngModel">
                         </div>
                         <div class="adresse">
                             <div>
-                                <input type="text" placeholder="Code postal">
+                                <input type="text" placeholder="Code postal" name="CPclient"
+                                    [(ngModel)]="devis.codePostalClient" required #codePostalClient="ngModel">
                             </div>
                             <div>
-                                <input type="text" placeholder="Ville">
+                                <input type="text" placeholder="Ville" name="villeClient"
+                                    [(ngModel)]="devis.villeClient" required #villeClient="ngModel">
                             </div>
                         </div>
                         <div>
                             <label for="Siret">Siret : </label>
-                            <input type="text" id="Siret" placeholder="820 339 265 20365">
+                            <input type="text" id="Siret" placeholder="820 339 265 20365" name="siretClient"
+                                [(ngModel)]="devis.siretClient" required #siretClient="ngModel">
                         </div>
                         <div>
                             <label for="tel">Tél :</label>
-                            <input type="text" id="tel" placeholder="0142563825">
+                            <input type="text" id="tel" placeholder="0142563825" name="telClient"
+                                [(ngModel)]="devis.telClient" required #telClient="ngModel">
                         </div>
                     </div>
                     <div class="date-devis">
@@ -106,7 +119,8 @@
                             <p>Date du devis</p>
                         </div>
                         <div class="date-devis-bloc">
-                            <input size="10" type="text" placeholder="26/03/2024">
+                            <input size="10" type="text" placeholder="26/03/2024" name="dateDevis"
+                                [(ngModel)]="devis.dateDevis" required #dateDevis="ngModel">
                         </div>
                     </div>
                     <div>
@@ -122,22 +136,25 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr *ngFor="let donnee of donneeTab">
+                                <tr *ngFor="let donnee of donneeTab; let i = index">
                                     <td>
                                         <input type="text" placeholder="TITRE DESCITION" name="titre"
                                             [(ngModel)]="donnee.titre"><br />
                                         <input type="text" placeholder="Description presentation" name="description"
                                             [(ngModel)]="donnee.description">
                                     </td>
-                                    <td *ngIf="quantite"><input type="text" name="quantite" [(ngModel)]="donnee.quantite"></td>
-                                    <td *ngIf="unite"><input type="text" name="quantite" placeholder="--" [(ngModel)]="donnee.unite"></td>
-                                    <td><input type="text" placeholder="0.00" name="prixUnitaire"
-                                            [(ngModel)]="donnee.prixUnitaire"> {{uniteValue}}</td>
+                                    <td *ngIf="quantite"><input type="number" name="quantite"
+                                            [(ngModel)]="donnee.quantite" (ngModelChange)="calculPrixTotalHT(donnee)"
+                                            required #quantite="ngModel"></td>
+                                    <td *ngIf="unite"><input type="text" name="quantite" placeholder="--"
+                                            [(ngModel)]="donnee.unite"></td>
+                                    <td><input type="number" name="prixUnitaire" [(ngModel)]="donnee.prixUnitaire"
+                                            (ngModelChange)="calculPrixTotalHT(donnee)" required
+                                            #prixUnitaire="ngModel"> {{uniteValue}}</td>
                                     <td *ngIf="tvaLigne"><input type="text" name="tva" [(ngModel)]="donnee.tva">%</td>
                                     <td class="prixTotal">
                                         <div>
-                                            <input type="text" placeholder="0.00" name="prixTotal"
-                                                [(ngModel)]="donnee.prixTotal"> {{uniteValue}}
+                                            {{donnee.prixTotal}} {{uniteValue}}
                                         </div>
                                         <div>
                                             <img src="../../../assets/icon/moin.svg" (click)="deleteColumn(donnee.id)"
@@ -174,10 +191,10 @@
                             <div class="col-lg-6 total-bloc-two">
                                 <div *ngIf="tva">
                                     <div class="total-bloc-prix">
-                                        <p>{{uniteValue}}</p>
+                                        <p>{{totalHt}} </p>
                                     </div>
                                     <div class="total-bloc-prix">
-                                        <p>{{uniteValue}}</p>
+                                        <p>{{totalTva}}</p>
                                     </div>
                                 </div>
                                 <div class="total-bloc-prix">
@@ -211,9 +228,11 @@
                                     <p>Taux TVA variable par ligne</p>
                                 </div>
                                 <div class="col reglage-col">
-                                    <button type="button" [ngStyle]="{'background-color': !tvaLigne ? '#E6EBF3' : 'white'}"
+                                    <button type="button"
+                                        [ngStyle]="{'background-color': !tvaLigne ? '#E6EBF3' : 'white'}"
                                         (click)="deleteTvaLigne()" class="reglage-btn btn btn-light">Non</button>
-                                    <button type="button" [ngStyle]="{'background-color': tvaLigne ? '#E6EBF3' : 'white'}"
+                                    <button type="button"
+                                        [ngStyle]="{'background-color': tvaLigne ? '#E6EBF3' : 'white'}"
                                         (click)="addTvaLigne()" class="reglage-btn btn-right btn btn-light">Oui</button>
                                 </div>
                             </div>
@@ -222,7 +241,8 @@
                                     <p>Taux TVA</p>
                                 </div>
                                 <div class="col reglage-col">
-                                    <input [(ngModel)]="tvaTaux" (ngModelChange)="changeTaux($event)" size="10" type="text" placeholder="20">
+                                    <input [(ngModel)]="tvaTaux" (ngModelChange)="changeTaux($event)" size="10"
+                                        type="number" placeholder="20">
                                 </div>
                             </div>
                         </div>
@@ -246,8 +266,7 @@
                                 <button type="button" [ngStyle]="{'background-color': !unite ? '#E6EBF3' : 'white'}"
                                     (click)="deleteColumnUnite()" class="reglage-btn btn btn-light">Non</button>
                                 <button type="button" [ngStyle]="{'background-color':   unite ? '#E6EBF3' : 'white'}"
-                                    (click)="addColumnUnite()"
-                                    class="reglage-btn btn-right btn btn-light">Oui</button>
+                                    (click)="addColumnUnite()" class="reglage-btn btn-right btn btn-light">Oui</button>
                             </div>
                         </div>
                         <div class="reglage-bloc">
@@ -255,13 +274,15 @@
                                 <p>Devise</p>
                             </div>
                             <div class="col reglage-col">
-                                <input size="10" [(ngModel)]="uniteValue" (ngModelChange)="changeUnitee($event)" type="text"  placeholder="{{uniteValue}}">
+                                <input size="10" [(ngModel)]="uniteValue" (ngModelChange)="changeUnitee($event)"
+                                    type="text" placeholder="{{uniteValue}}">
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="btn-telecharger">
-                    <button type="button" class="btn btn-warning">Télécharger mon devis <img src="../../../assets/icon/download.svg" alt=""> </button>
+                    <button type="button" class="btn btn-warning">Télécharger mon devis <img
+                            src="../../../assets/icon/download.svg" alt=""> </button>
                 </div>
             </div>
         </div>
