@@ -45,10 +45,10 @@
             </div>
         </div>
     </div>
-    <div class="container-fluid">
-        <div class="bloc-devis">
-            <div class="devis col-9">
-                <form (ngSubmit)="onSubmit()" #devisForm="ngForm">
+    <form (ngSubmit)="onSubmit()" #devisForm="ngForm">
+        <div class="container-fluid">
+            <div class="bloc-devis">
+                <div class="devis col-9">
                     <div class="devis-info col-lg">
                         <div>
                             <input type="text" placeholder="votre nom / société" name="nomSociete"
@@ -119,8 +119,8 @@
                             <p>Date du devis</p>
                         </div>
                         <div class="date-devis-bloc">
-                            <input size="10" type="text" placeholder="26/03/2024" name="dateDevis"
-                                [(ngModel)]="devis.dateDevis" required #dateDevis="ngModel">
+                            <input size="10" type="text" placeholder="{{ currentDate | date: 'shortDate' }}"
+                                name="dateDevis" [(ngModel)]="devis.dateDevis" required #dateDevis="ngModel">
                         </div>
                     </div>
                     <div>
@@ -138,19 +138,48 @@
                             <tbody>
                                 <tr *ngFor="let donnee of donneeTab; let i = index">
                                     <td>
-                                        <input type="text" placeholder="TITRE DESCITION" name="titre"
-                                            [(ngModel)]="donnee.titre"><br />
-                                        <input type="text" placeholder="Description presentation" name="description"
-                                            [(ngModel)]="donnee.description">
+                                        <div>
+                                            <div *ngIf="!donnee.affichage">
+                                                <input type="text" placeholder="TITRE DESCITION" name="titre"
+                                                    [(ngModel)]="donnee.titre"><br />
+                                            </div>
+                                            <div *ngIf="donnee.affichage">
+                                                {{donnee.titre}}
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <div *ngIf="!donnee.affichage">
+                                                <input type="text" placeholder="Description presentation"
+                                                    name="description" [(ngModel)]="donnee.description">
+                                            </div>
+                                            <div *ngIf="donnee.affichage">
+                                                {{donnee.description}}
+                                            </div>
+                                        </div>
                                     </td>
-                                    <td *ngIf="quantite"><input type="number" name="quantite"
-                                            [(ngModel)]="donnee.quantite" (ngModelChange)="calculPrixTotalHT(donnee)"
-                                            required #quantite="ngModel"></td>
-                                    <td *ngIf="unite"><input type="text" name="quantite" placeholder="--"
-                                            [(ngModel)]="donnee.unite"></td>
-                                    <td><input type="number" name="prixUnitaire" [(ngModel)]="donnee.prixUnitaire"
-                                            (ngModelChange)="calculPrixTotalHT(donnee)" required
-                                            #prixUnitaire="ngModel"> {{uniteValue}}</td>
+                                    <td *ngIf="quantite">
+                                        <div *ngIf="!donnee.affichage">
+                                            <input type="number" name="quantite" [(ngModel)]="donnee.quantite"
+                                                (ngModelChange)="calculPrixTotalHT(donnee)" required
+                                                #quantite="ngModel">
+                                        </div>
+                                        <div *ngIf="donnee.affichage">
+                                            {{donnee.quantite}}
+                                        </div>
+                                    </td>
+                                    <td *ngIf="unite">
+                                        <input type="text" name="quantite" placeholder="--" [(ngModel)]="donnee.unite">
+                                    </td>
+                                    <td>
+                                        <div *ngIf="!donnee.affichage">
+                                            <input type="number" name="prixUnitaire" [(ngModel)]="donnee.prixUnitaire"
+                                                (ngModelChange)="calculPrixTotalHT(donnee)" required
+                                                #prixUnitaire="ngModel"> {{uniteValue}}
+                                        </div>
+                                        <div *ngIf="donnee.affichage">
+                                            {{donnee.prixUnitaire}} {{uniteValue}}
+                                        </div>
+                                    </td>
                                     <td *ngIf="tvaLigne"><input type="text" name="tva" [(ngModel)]="donnee.tva">%</td>
                                     <td class="prixTotal">
                                         <div>
@@ -191,100 +220,106 @@
                             <div class="col-lg-6 total-bloc-two">
                                 <div *ngIf="tva">
                                     <div class="total-bloc-prix">
-                                        <p>{{totalHt}} </p>
+                                        <p>{{totalHt}} {{uniteValue}}</p>
                                     </div>
                                     <div class="total-bloc-prix">
-                                        <p>{{totalTva}}</p>
+                                        <p>{{calculTva()}} {{uniteValue}}</p>
                                     </div>
                                 </div>
                                 <div class="total-bloc-prix">
-                                    <p>{{uniteValue}}</p>
+                                    <p>{{CalculTotalTTC()}} {{uniteValue}}</p>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </form>
-            </div>
-            <div class="col-lg-3">
-                <div class="reglage">
-                    <div class="reglage-bloc-title col">
-                        <p class="reglage-title">Réglages</p>
-                    </div>
-                    <div class="reglage-bloc-btn">
-                        <div class="reglage-bloc">
-                            <div class="col">
-                                <p>Activer la TVA</p>
-                            </div>
-                            <div class="col reglage-col">
-                                <button type="button" [ngStyle]="{'background-color': !tva ? '#E6EBF3' : 'white'}"
-                                    (click)="deleteTva()" class="reglage-btn btn btn-light">Non</button>
-                                <button type="button" [ngStyle]="{'background-color': tva ? '#E6EBF3' : 'white'}"
-                                    (click)="addTva()" class="reglage-btn btn-right btn btn-light">Oui</button>
-                            </div>
-                        </div>
-                        <div *ngIf="tva">
-                            <div class="reglage-bloc">
-                                <div class="col">
-                                    <p>Taux TVA variable par ligne</p>
-                                </div>
-                                <div class="col reglage-col">
-                                    <button type="button"
-                                        [ngStyle]="{'background-color': !tvaLigne ? '#E6EBF3' : 'white'}"
-                                        (click)="deleteTvaLigne()" class="reglage-btn btn btn-light">Non</button>
-                                    <button type="button"
-                                        [ngStyle]="{'background-color': tvaLigne ? '#E6EBF3' : 'white'}"
-                                        (click)="addTvaLigne()" class="reglage-btn btn-right btn btn-light">Oui</button>
-                                </div>
-                            </div>
-                            <div class="reglage-bloc">
-                                <div class="col">
-                                    <p>Taux TVA</p>
-                                </div>
-                                <div class="col reglage-col">
-                                    <input [(ngModel)]="tvaTaux" (ngModelChange)="changeTaux($event)" size="10"
-                                        type="number" placeholder="20">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="reglage-bloc">
-                            <div class="col">
-                                <p>Activer la colonne "Quantité"</p>
-                            </div>
-                            <div class="col reglage-col">
-                                <button type="button" [ngStyle]="{'background-color': !quantite ? '#E6EBF3' : 'white'}"
-                                    (click)="deleteColumQuantite()" class="reglage-btn btn btn-light">Non</button>
-                                <button type="button" [ngStyle]="{'background-color': quantite ? '#E6EBF3' : 'white'}"
-                                    (click)="addColumQuantite()"
-                                    class="reglage-btn btn-right btn btn-light">Oui</button>
-                            </div>
-                        </div>
-                        <div class="reglage-bloc">
-                            <div class="col">
-                                <p>Activer la colonne "Unité"</p>
-                            </div>
-                            <div class="col reglage-col">
-                                <button type="button" [ngStyle]="{'background-color': !unite ? '#E6EBF3' : 'white'}"
-                                    (click)="deleteColumnUnite()" class="reglage-btn btn btn-light">Non</button>
-                                <button type="button" [ngStyle]="{'background-color':   unite ? '#E6EBF3' : 'white'}"
-                                    (click)="addColumnUnite()" class="reglage-btn btn-right btn btn-light">Oui</button>
-                            </div>
-                        </div>
-                        <div class="reglage-bloc">
-                            <div class="col">
-                                <p>Devise</p>
-                            </div>
-                            <div class="col reglage-col">
-                                <input size="10" [(ngModel)]="uniteValue" (ngModelChange)="changeUnitee($event)"
-                                    type="text" placeholder="{{uniteValue}}">
-                            </div>
-                        </div>
-                    </div>
+
                 </div>
-                <div class="btn-telecharger">
-                    <button type="button" class="btn btn-warning">Télécharger mon devis <img
-                            src="../../../assets/icon/download.svg" alt=""> </button>
+                <div class="col-lg-3">
+                    <div class="reglage">
+                        <div class="reglage-bloc-title col">
+                            <p class="reglage-title">Réglages</p>
+                        </div>
+                        <div class="reglage-bloc-btn">
+                            <div class="reglage-bloc">
+                                <div class="col">
+                                    <p>Activer la TVA</p>
+                                </div>
+                                <div class="col reglage-col">
+                                    <button type="button" [ngStyle]="{'background-color': !tva ? '#E6EBF3' : 'white'}"
+                                        (click)="deleteTva()" class="reglage-btn btn btn-light">Non</button>
+                                    <button type="button" [ngStyle]="{'background-color': tva ? '#E6EBF3' : 'white'}"
+                                        (click)="addTva()" class="reglage-btn btn-right btn btn-light">Oui</button>
+                                </div>
+                            </div>
+                            <div *ngIf="tva">
+                                <div class="reglage-bloc">
+                                    <div class="col">
+                                        <p>Taux TVA variable par ligne</p>
+                                    </div>
+                                    <div class="col reglage-col">
+                                        <button type="button"
+                                            [ngStyle]="{'background-color': !tvaLigne ? '#E6EBF3' : 'white'}"
+                                            (click)="deleteTvaLigne()" class="reglage-btn btn btn-light">Non</button>
+                                        <button type="button"
+                                            [ngStyle]="{'background-color': tvaLigne ? '#E6EBF3' : 'white'}"
+                                            (click)="addTvaLigne()"
+                                            class="reglage-btn btn-right btn btn-light">Oui</button>
+                                    </div>
+                                </div>
+                                <div class="reglage-bloc">
+                                    <div class="col">
+                                        <p>Taux TVA</p>
+                                    </div>
+                                    <div class="col reglage-col">
+                                        <input [(ngModel)]="tvaTaux" (ngModelChange)="changeTaux($event)" size="10"
+                                            type="number" placeholder="20">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="reglage-bloc">
+                                <div class="col">
+                                    <p>Activer la colonne "Quantité"</p>
+                                </div>
+                                <div class="col reglage-col">
+                                    <button type="button"
+                                        [ngStyle]="{'background-color': !quantite ? '#E6EBF3' : 'white'}"
+                                        (click)="deleteColumQuantite()" class="reglage-btn btn btn-light">Non</button>
+                                    <button type="button"
+                                        [ngStyle]="{'background-color': quantite ? '#E6EBF3' : 'white'}"
+                                        (click)="addColumQuantite()"
+                                        class="reglage-btn btn-right btn btn-light">Oui</button>
+                                </div>
+                            </div>
+                            <div class="reglage-bloc">
+                                <div class="col">
+                                    <p>Activer la colonne "Unité"</p>
+                                </div>
+                                <div class="col reglage-col">
+                                    <button type="button" [ngStyle]="{'background-color': !unite ? '#E6EBF3' : 'white'}"
+                                        (click)="deleteColumnUnite()" class="reglage-btn btn btn-light">Non</button>
+                                    <button type="button"
+                                        [ngStyle]="{'background-color':   unite ? '#E6EBF3' : 'white'}"
+                                        (click)="addColumnUnite()"
+                                        class="reglage-btn btn-right btn btn-light">Oui</button>
+                                </div>
+                            </div>
+                            <div class="reglage-bloc">
+                                <div class="col">
+                                    <p>Devise</p>
+                                </div>
+                                <div class="col reglage-col">
+                                    <input size="10" [(ngModel)]="uniteValue" (ngModelChange)="changeUnitee($event)"
+                                        type="text" placeholder="{{uniteValue}}">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="btn-telecharger">
+                        <button type="submit" class="btn btn-warning">Télécharger mon devis
+                            <img src="../../../assets/icon/download.svg" alt=""> </button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    </form>
 </div>
