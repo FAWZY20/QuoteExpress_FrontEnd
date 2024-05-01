@@ -213,7 +213,9 @@
                                         <p>Total HT</p>
                                     </div>
                                     <div class="total-bloc-titre">
-                                        <p>TVA({{tvaTaux}}%)</p>
+                                        <div *ngIf="!tvaLigne; then thenBlock else elseBlock"></div>
+                                        <ng-template #thenBlock>TVA ({{tvaTaux}}%)</ng-template>
+                                        <ng-template #elseBlock>Total TVA</ng-template>
                                     </div>
                                 </div>
                                 <div class="total-bloc-titre">
@@ -268,7 +270,7 @@
                                         (click)="addTvaLigne()" class="reglage-btn btn-right btn btn-light">Oui</button>
                                 </div>
                             </div>
-                            <div class="reglage-bloc">
+                            <div *ngIf="!tvaLigne" class="reglage-bloc">
                                 <div class="col">
                                     <p>Taux TVA</p>
                                 </div>
