@@ -3,7 +3,7 @@ export class DevisTab{
     titre!: string;
     description!: string;
     quantite!: number;
-    unite!: string;
+    unite!: String;
     prixUnitaire!: number;
     prixTotal!: number;
     tva!: number;

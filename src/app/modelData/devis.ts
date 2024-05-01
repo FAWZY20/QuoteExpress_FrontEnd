@@ -17,8 +17,9 @@ export class Devis{
     dateDevis!:string;
     infoDevis!: any[];
     totalHt!:number;
-    tva!:number;
+    tva: number = 20;
     totalTtc!:number;
     tvaTotal!: number;
     devisTab!: DevisTab[];
+    moneyUnite: String = "€";
 }

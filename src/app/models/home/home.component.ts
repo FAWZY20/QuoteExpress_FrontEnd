@@ -61,7 +61,7 @@ export class HomeComponent {
     return this.totalTTC;
   }
 
-  onSubmit(): void {
+  generateDevis(): void {
     this.devis.devisTab = this.donneeTab.slice();
     this.docxService.generateDocx(this.devis);
   }
@@ -76,7 +76,13 @@ export class HomeComponent {
   }
 
   deleteColumn(id: number) {
+    this.donneeTab.forEach(rst => {
+      if (rst.id == id) {
+        this.devis.totalHt = this.totalHt - rst.prixTotal;
+      }
+    })
     this.donneeTab = this.donneeTab.filter(resulte => resulte.id !== id);
+
   }
 
   addColumQuantite() {
@@ -118,10 +124,15 @@ export class HomeComponent {
 
   changeUnitee(unitee: string): void {
     this.uniteValue = unitee;
+    this.devis.moneyUnite = this.uniteValue;
+    this.donneeTab.forEach(rst => {
+      rst.unite = this.uniteValue
+    })
   }
 
   changeTaux(taux: number): void {
     this.tvaTaux = taux;
+    this.devis.tva = this.tvaTaux;
   }
 
 }

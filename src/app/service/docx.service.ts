@@ -221,7 +221,7 @@ export class DocxService {
                     children:[
                       new Paragraph({
                         children: [
-                          new TextRun(`${devis.totalHt}`)
+                          new TextRun(`${devis.totalHt} ${devis.moneyUnite}`)
                         ]
                       })
                     ]
@@ -265,7 +265,7 @@ export class DocxService {
                     children:[
                       new Paragraph({
                         children: [
-                          new TextRun(`${devis.totalTtc}`)
+                          new TextRun(`${devis.totalTtc} ${devis.moneyUnite}`)
                         ]
                       })
                     ]
