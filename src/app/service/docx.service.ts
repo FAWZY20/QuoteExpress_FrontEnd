@@ -166,7 +166,11 @@ export class DocxService {
                       children: [
                         new Paragraph({
                           children:[
-                            new TextRun(rst.titre),
+                            new TextRun(rst.titre)
+                          ]
+                        }),
+                        new Paragraph({
+                          children:[
                             new TextRun(rst.description)
                           ]
                         })
