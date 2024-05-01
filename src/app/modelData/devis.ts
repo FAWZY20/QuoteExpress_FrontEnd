@@ -1,3 +1,5 @@
+import { DevisTab } from "./devisTab";
+
 export class Devis{
     societe!:string;
     adresseSociete!:string;
@@ -14,7 +16,9 @@ export class Devis{
     telClient!:string;
     dateDevis!:string;
     infoDevis!: any[];
-    totalHt!:string;
-    tva!:string;
-    totalTtc!:string;
+    totalHt!:number;
+    tva!:number;
+    totalTtc!:number;
+    tvaTotal!: number;
+    devisTab!: DevisTab[];
 }

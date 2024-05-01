@@ -45,25 +45,25 @@ export class HomeComponent {
     this.donneeTab.forEach((item: any) => {
       this.totalHt += item.quantite * item.prixUnitaire;
     });
+    this.devis.totalHt = this.totalHt;
     return this.totalHt;
   }
 
   calculTva() {
-    this.totalTva = this.totalHt * this.tvaTaux / 100
+    this.totalTva = this.totalHt * this.tvaTaux / 100;
+    this.devis.tvaTotal = this.totalTva;
     return this.totalTva;
   }
 
   CalculTotalTTC() {
     this.totalTTC = this.totalHt + this.totalTva;
+    this.devis.totalTtc = this.totalTTC;
     return this.totalTTC;
   }
 
   onSubmit(): void {
+    this.devis.devisTab = this.donneeTab.slice();
     this.docxService.generateDocx(this.devis);
-  }
-
-  generateDocx() {
-
   }
 
   addColumn() {

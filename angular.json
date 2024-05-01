@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/generate_devis_frontend",
+            "outputPath": "dist/generate_devis",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": [

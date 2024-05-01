@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Packer, Document, Paragraph, TextRun } from "docx";
+import { Packer, Document, Paragraph, TextRun, BorderStyle, Table, TableRow, TableCell } from "docx";
 import { Devis } from '../modelData/devis';
 
 
@@ -73,8 +73,207 @@ export class DocxService {
                 text: `Tél :${devis.telClient}`,
                 break: 1
               }),
+            ],
+            alignment: "right"
+          }),
+          new Table({
+            rows: [
+              new TableRow({
+                children: [
+                  new TableCell({
+                    children: [
+                      new Paragraph({
+                        children: [
+                          new TextRun("Date du devis")
+                        ]
+                      })
+                    ],
+                    margins: {
+                      bottom: 70,
+                      top: 70,
+                      left: 70,
+                      right: 70
+                    },
+                    shading: {
+                      fill: "#E7E6E6"
+                    }
+                  }),
+                  new TableCell({
+                    children: [
+                      new Paragraph({
+                        children: [
+                          new TextRun(`${devis.dateDevis}`)
+                        ]
+                      })
+                    ],
+                    margins: {
+                      bottom: 70,
+                      top: 70,
+                      left: 70,
+                      right: 70
+                    }
+                  })
+                ]
+              })
             ]
           }),
+          new Table({
+            rows: [
+              new TableRow({
+                children: [
+                  new TableCell({
+                    children: [
+                      new Paragraph({
+                        children: [
+                          new TextRun("Description")
+                        ]
+                      })
+                    ]
+                  }),
+                  new TableCell({
+                    children: [
+                      new Paragraph({
+                        children: [
+                          new TextRun("Quantité")
+                        ]
+                      })
+                    ]
+                  }),
+                  new TableCell({
+                    children: [
+                      new Paragraph({
+                        children: [
+                          new TextRun("Prix unitaire HT")
+                        ]
+                      })
+                    ]
+                  }),
+                  new TableCell({
+                    children: [
+                      new Paragraph({
+                        children: [
+                          new TextRun("Prix total HT")
+                        ]
+                      })
+                    ]
+                  })
+                ]
+              }),  
+              ...devis.devisTab.map(rst => 
+                new TableRow({
+                  children:[
+                    new TableCell({
+                      children: [
+                        new Paragraph({
+                          children:[
+                            new TextRun(rst.titre),
+                            new TextRun(rst.description)
+                          ]
+                        })
+                      ]
+                    }),
+                    new TableCell({
+                      children: [
+                        new Paragraph({
+                          children:[
+                            new TextRun(`${rst.quantite}`)
+                          ]
+                        })
+                      ]
+                    }),
+                    new TableCell({
+                      children: [
+                        new Paragraph({
+                          children:[
+                            new TextRun(`${rst.prixUnitaire} ${rst.unite}`)
+                          ]
+                        })
+                      ]
+                    }),
+                    new TableCell({
+                      children: [
+                        new Paragraph({
+                          children:[
+                            new TextRun(`${rst.prixTotal} ${rst.unite}`)
+                          ]
+                        })
+                      ]
+                    }),
+                  ]
+                })
+              )
+            ]
+          }),
+          new Table({
+            rows:[
+              new TableRow({
+                children: [
+                  new TableCell({
+                    children:[
+                      new Paragraph({
+                        children: [
+                          new TextRun("Total HT")
+                        ]
+                      })
+                    ]
+                  }),
+                  new TableCell({
+                    children:[
+                      new Paragraph({
+                        children: [
+                          new TextRun(`${devis.totalHt}`)
+                        ]
+                      })
+                    ]
+                  })
+                ]
+              }),
+              new TableRow({
+                children: [
+                  new TableCell({
+                    children:[
+                      new Paragraph({
+                        children: [
+                          new TextRun("TVA(" +`${devis.tva}`+ "%)")
+                        ]
+                      })
+                    ]
+                  }),
+                  new TableCell({
+                    children:[
+                      new Paragraph({
+                        children: [
+                          new TextRun(`${devis.tvaTotal}`)
+                        ]
+                      })
+                    ]
+                  })
+                ]
+              }),
+              new TableRow({
+                children: [
+                  new TableCell({
+                    children:[
+                      new Paragraph({
+                        children: [
+                          new TextRun("Total TTC")
+                        ]
+                      })
+                    ]
+                  }),
+                  new TableCell({
+                    children:[
+                      new Paragraph({
+                        children: [
+                          new TextRun(`${devis.totalTtc}`)
+                        ]
+                      })
+                    ]
+                  })
+                ]
+              })
+            ]
+          })
         ]
       }]
     });
@@ -92,5 +291,4 @@ export class DocxService {
     });
 
   }
-
 }

@@ -180,7 +180,9 @@
                                             {{donnee.prixUnitaire}} {{uniteValue}}
                                         </div>
                                     </td>
-                                    <td *ngIf="tvaLigne"><input type="text" name="tva" [(ngModel)]="donnee.tva">%</td>
+                                    <td *ngIf="tvaLigne">
+                                        <input type="text" name="tva" [(ngModel)]="donnee.tva" required #tva="ngModel">%
+                                    </td>
                                     <td class="prixTotal">
                                         <div>
                                             {{donnee.prixTotal}} {{uniteValue}}
@@ -220,7 +222,7 @@
                             <div class="col-lg-6 total-bloc-two">
                                 <div *ngIf="tva">
                                     <div class="total-bloc-prix">
-                                        <p>{{totalHt}} {{uniteValue}}</p>
+                                        <p>{{calculPrixTotalDevisHT()}} {{uniteValue}}</p>
                                     </div>
                                     <div class="total-bloc-prix">
                                         <p>{{calculTva()}} {{uniteValue}}</p>
