@@ -181,8 +181,7 @@
                                         </div>
                                     </td>
                                     <td *ngIf="tvaLigne">
-                                        <input type="number" name="tva" [(ngModel)]="donnee.tva" required
-                                            #tva="ngModel">%
+                                        <input type="number" name="tva" [(ngModel)]="donnee.tva" required #tva="ngModel">%
                                     </td>
                                     <td class="prixTotal">
                                         <div>
@@ -228,7 +227,9 @@
                                         <p>{{calculPrixTotalDevisHT()}} {{uniteValue}}</p>
                                     </div>
                                     <div class="total-bloc-prix">
-                                        <p>{{calculTva()}} {{uniteValue}}</p>
+                                        <div *ngIf="!tvaLigne; then thenBlock else elseBlock"></div>
+                                        <ng-template #thenBlock><p>{{calculTva()}} {{uniteValue}}</p></ng-template>
+                                        <ng-template #elseBlock><p>{{calculTotalTva()}} {{uniteValue}}</p></ng-template>
                                     </div>
                                 </div>
                                 <div class="total-bloc-prix">

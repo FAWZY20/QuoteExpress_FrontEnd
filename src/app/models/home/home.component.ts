@@ -22,6 +22,7 @@ export class HomeComponent {
   totalHt: number = 0;
   totalTva: number = 0;
   totalTTC: number = 0;
+  tvaTT: number = 0;
 
   donneeTab: DevisTab[] = [
     { id: 1, titre: '', description: '', quantite: 1, unite: '', prixUnitaire: 0, prixTotal: 0, tva: 20, affichage: false }
@@ -55,6 +56,15 @@ export class HomeComponent {
     return this.totalTva;
   }
 
+  calculTotalTva() {
+    this.tvaTT = 0;
+    this.donneeTab.forEach((item: any) => {
+      this.tvaTT += item.prixTotal * item.tva / 100;
+    });
+    this.devis.tvaTotal = this.tvaTT;
+    return this.tvaTT;
+  }
+  
   CalculTotalTTC() {
     this.totalTTC = this.totalHt + this.totalTva;
     this.devis.totalTtc = this.totalTTC;
