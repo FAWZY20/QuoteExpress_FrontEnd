@@ -34,7 +34,7 @@ export class DocxService {
                 break: 1
               }),
               new TextRun({
-                text: `Siret:${devis.siretSociete}`,
+                text: `Siret : ${devis.siretSociete}`,
                 break: 1
               }),
               new TextRun({
@@ -42,7 +42,7 @@ export class DocxService {
                 break: 1
               }),
               new TextRun({
-                text: `Tél :${devis.telSociete}`,
+                text: `Tél : ${devis.telSociete}`,
                 break: 1
               }),
             ]
@@ -66,20 +66,20 @@ export class DocxService {
                 break: 1
               }),
               new TextRun({
-                text: `Siret :${devis.siretClient}`,
+                text: `Siret : ${devis.siretClient}`,
                 break: 1
               }),
               new TextRun({
-                text: `Tél :${devis.telClient}`,
+                text: `Tél : ${devis.telClient}`,
                 break: 1
               }),
             ],
             alignment: "right",
           }),
           new Paragraph({
-            children:[
+            children: [
               new TextRun({
-                break:2
+                break: 2
               })
             ]
           }),
@@ -88,16 +88,24 @@ export class DocxService {
               new TableRow({
                 children: [
                   new TableCell({
+                    width: {
+                      size: 1505,
+                      type: WidthType.DXA,
+                    },
                     children: [
                       new Paragraph({
+                        alignment: "center",
                         children: [
-                          new TextRun("Date du devis")
+                          new TextRun({
+                            text: "Date du devis"
+                          })
                         ]
                       })
                     ],
+                    verticalAlign: VerticalAlign.CENTER,
                     margins: {
-                      bottom: 70,
-                      top: 70,
+                      bottom: 100,
+                      top: 100,
                       left: 70,
                       right: 70
                     },
@@ -106,6 +114,10 @@ export class DocxService {
                     }
                   }),
                   new TableCell({
+                    width: {
+                      size: 1505,
+                      type: WidthType.DXA,
+                    },
                     children: [
                       new Paragraph({
                         children: [
@@ -114,8 +126,8 @@ export class DocxService {
                       })
                     ],
                     margins: {
-                      bottom: 70,
-                      top: 70,
+                      bottom: 100,
+                      top: 100,
                       left: 70,
                       right: 70
                     }
@@ -125,9 +137,9 @@ export class DocxService {
             ]
           }),
           new Paragraph({
-            children:[
+            children: [
               new TextRun({
-                break:2
+                break: 2
               })
             ]
           }),
@@ -143,8 +155,11 @@ export class DocxService {
                     },
                     children: [
                       new Paragraph({
+                        alignment: "center",
                         children: [
-                          new TextRun("Description")
+                          new TextRun({
+                            text: "Description",
+                          })
                         ]
                       })
                     ],
@@ -166,8 +181,12 @@ export class DocxService {
                     },
                     children: [
                       new Paragraph({
+                        alignment: "center",
                         children: [
-                          new TextRun("Quantité")
+                          new TextRun({
+                            text: "Quantité",
+
+                          })
                         ]
                       })
                     ],
@@ -189,8 +208,11 @@ export class DocxService {
                     },
                     children: [
                       new Paragraph({
+                        alignment: "center",
                         children: [
-                          new TextRun("Prix unitaire HT")
+                          new TextRun({
+                            text: "Prix unitaire HT"
+                          })
                         ]
                       })
                     ],
@@ -212,8 +234,11 @@ export class DocxService {
                     },
                     children: [
                       new Paragraph({
+                        alignment: "center",
                         children: [
-                          new TextRun("Prix total HT")
+                          new TextRun({
+                            text: "Prix total HT"
+                          })
                         ]
                       })
                     ],
@@ -245,11 +270,19 @@ export class DocxService {
                             new TextRun(rst.description)
                           ]
                         })
-                      ]
+                      ],
+                      margins: {
+                        bottom: 70,
+                        top: 70,
+                        left: 70,
+                        right: 70
+                      },
                     }),
                     new TableCell({
+                      verticalAlign: VerticalAlign.CENTER,
                       children: [
                         new Paragraph({
+                          alignment: "center",
                           children: [
                             new TextRun(`${rst.quantite}`)
                           ]
@@ -257,19 +290,23 @@ export class DocxService {
                       ]
                     }),
                     new TableCell({
+                      verticalAlign: VerticalAlign.CENTER,
                       children: [
                         new Paragraph({
+                          alignment: "center",
                           children: [
-                            new TextRun(`${rst.prixUnitaire} ${rst.unite}`)
+                            new TextRun(`${rst.prixUnitaire} ${devis.moneyUnite}`)
                           ]
                         })
                       ]
                     }),
                     new TableCell({
+                      verticalAlign: VerticalAlign.CENTER,
                       children: [
                         new Paragraph({
+                          alignment: "center",
                           children: [
-                            new TextRun(`${rst.prixTotal} ${rst.unite}`)
+                            new TextRun(`${rst.prixTotal} ${devis.moneyUnite}`)
                           ]
                         })
                       ]
@@ -280,15 +317,15 @@ export class DocxService {
             ]
           }),
           new Paragraph({
-            children:[
+            children: [
               new TextRun({
-                break:2
+                break: 2
               }),
               new TextRun({
-                text:`${devis.info}`
+                text: `${devis.info}`
               }),
               new TextRun({
-                break:2
+                break: 2
               })
             ]
           }),
