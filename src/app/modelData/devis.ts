@@ -22,4 +22,5 @@ export class Devis{
     tvaTotal!: number;
     devisTab!: DevisTab[];
     moneyUnite: String = "€";
+    info!: String;
 }

@@ -203,7 +203,7 @@
                     </div>
                     <div class="total">
                         <div class="col-lg-6">
-                            <input type="text" placeholder="Informations complémentaires (IBAN, BIC...)">
+                            <input type="text" placeholder="Informations complémentaires (IBAN, BIC...)" name="info" [(ngModel)]="devis.info" required #info="ngModel">
                         </div>
                         <div class="col-lg-6 total-bloc">
                             <div class="col-lg-6 total-bloc-one">

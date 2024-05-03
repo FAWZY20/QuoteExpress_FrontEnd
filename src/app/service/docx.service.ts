@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Packer, Document, Paragraph, TextRun, BorderStyle, Table, TableRow, TableCell, WidthType, VerticalAlign, TableAnchorType, RelativeHorizontalPosition, OverlapType, RelativeVerticalPosition, TableLayoutType } from "docx";
+import { Packer, Document, Paragraph, TextRun, BorderStyle, Table, TableRow, TableCell, WidthType, VerticalAlign, TableAnchorType, RelativeHorizontalPosition, OverlapType, RelativeVerticalPosition, TableLayoutType, TableLayout } from "docx";
 import { Devis } from '../modelData/devis';
 
 
@@ -74,7 +74,14 @@ export class DocxService {
                 break: 1
               }),
             ],
-            alignment: "right"
+            alignment: "right",
+          }),
+          new Paragraph({
+            children:[
+              new TextRun({
+                break:2
+              })
+            ]
           }),
           new Table({
             rows: [
@@ -117,7 +124,13 @@ export class DocxService {
               })
             ]
           }),
-          new Paragraph({}),
+          new Paragraph({
+            children:[
+              new TextRun({
+                break:2
+              })
+            ]
+          }),
           new Table({
             columnWidths: [4505, 4505],
             rows: [
@@ -264,20 +277,21 @@ export class DocxService {
                   ]
                 })
               )
-            ],
-            float: {
-              horizontalAnchor: TableAnchorType.MARGIN,
-              verticalAnchor: TableAnchorType.MARGIN,
-              relativeHorizontalPosition: RelativeHorizontalPosition.CENTER,
-              relativeVerticalPosition: RelativeVerticalPosition.CENTER,
-              overlap: OverlapType.NEVER,
-              leftFromText: 1000,
-              rightFromText: 2000,
-              topFromText: 1500,
-              bottomFromText: 30,
-            }
+            ]
           }),
-          new Paragraph({}),
+          new Paragraph({
+            children:[
+              new TextRun({
+                break:2
+              }),
+              new TextRun({
+                text:`${devis.info}`
+              }),
+              new TextRun({
+                break:2
+              })
+            ]
+          }),
           new Table({
             rows: [
               new TableRow({
@@ -415,17 +429,7 @@ export class DocxService {
                 ]
               })
             ],
-            float: {
-              horizontalAnchor: TableAnchorType.MARGIN,
-              verticalAnchor: TableAnchorType.MARGIN,
-              relativeHorizontalPosition: RelativeHorizontalPosition.RIGHT,
-              relativeVerticalPosition: RelativeVerticalPosition.BOTTOM,
-              overlap: OverlapType.NEVER,
-              leftFromText: 1000,
-              rightFromText: 2000,
-              topFromText: 1500,
-              bottomFromText: 30,
-            },
+            alignment: 'right',
             width: {
               size: 3535,
               type: WidthType.DXA,
@@ -435,8 +439,6 @@ export class DocxService {
         ]
       }],
     });
-
-
 
     Packer.toBlob(doc).then(blob => {
       // Télécharger le fichier DOCX
