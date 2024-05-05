@@ -25,7 +25,7 @@ export class HomeComponent {
   tvaTT: number = 0;
 
   donneeTab: DevisTab[] = [
-    { id: 1, titre: '', description: '', quantiteCell: true , quantite: 1, uniteCell: false , unite: '',tvaCell: false, prixUnitaire: 0, prixTotal: 0, tva: 20, affichage: false }
+    { id: 1, titre: '', description: '', quantiteCell: true, quantite: 1, uniteCell: false, unite: '', tvaCell: false, prixUnitaire: 0, prixTotal: 0, tva: 20, affichage: false }
   ];
 
   constructor(
@@ -50,6 +50,10 @@ export class HomeComponent {
     return this.totalHt;
   }
 
+  printDevis() {
+   
+  }
+
   calculTva() {
     this.totalTva = this.totalHt * this.tvaTaux / 100;
     this.devis.tvaTotal = this.totalTva;
@@ -64,7 +68,7 @@ export class HomeComponent {
     this.devis.tvaTotal = this.tvaTT;
     return this.tvaTT;
   }
-  
+
   CalculTotalTTC() {
     this.totalTTC = this.totalHt + this.totalTva;
     this.devis.totalTtc = this.totalTTC;
@@ -80,7 +84,7 @@ export class HomeComponent {
     this.donneeTab.map(result => {
       result.affichage = true;
     })
-    const nouvelleLigne = { id: this.donneeTab.length + 1, titre: '', description: '', quantiteCell: true, tvaCell: false, quantite: 1, uniteCell: false , unite: '', prixUnitaire: 0, tva: 20, prixTotal: 0, affichage: false };
+    const nouvelleLigne = { id: this.donneeTab.length + 1, titre: '', description: '', quantiteCell: true, tvaCell: false, quantite: 1, uniteCell: false, unite: '', prixUnitaire: 0, tva: 20, prixTotal: 0, affichage: false };
     this.donneeTab.push(nouvelleLigne);
     localStorage.setItem('mapData', JSON.stringify(this.donneeTab));
   }
