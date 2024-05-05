@@ -115,7 +115,6 @@ export class HomeComponent {
     this.donneeTab.forEach(rst => {
       rst.uniteCell = true;
       console.log(rst);
-      
     })
   }
 
