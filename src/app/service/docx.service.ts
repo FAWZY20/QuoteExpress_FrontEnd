@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Packer, Document, Paragraph, TextRun, BorderStyle, Table, TableRow, TableCell, WidthType, VerticalAlign, TableAnchorType, RelativeHorizontalPosition, OverlapType, RelativeVerticalPosition, TableLayoutType, TableLayout } from "docx";
 import { Devis } from '../modelData/devis';
+import { DevisTab } from '../modelData/devisTab';
 
 
 @Injectable({
@@ -174,33 +175,8 @@ export class DocxService {
                       fill: "#E7E6E6"
                     }
                   }),
-                  new TableCell({
-                    width: {
-                      size: 4505,
-                      type: WidthType.DXA,
-                    },
-                    children: [
-                      new Paragraph({
-                        alignment: "center",
-                        children: [
-                          new TextRun({
-                            text: "Quantité",
-
-                          })
-                        ]
-                      })
-                    ],
-                    verticalAlign: VerticalAlign.CENTER,
-                    margins: {
-                      bottom: 70,
-                      top: 70,
-                      left: 70,
-                      right: 70
-                    },
-                    shading: {
-                      fill: "#E7E6E6"
-                    }
-                  }),
+                  this.quantiteCell(devis, "#E7E6E6", "Quantité"),
+                  this.uniteCell(devis, "#E7E6E6", "Unité"),
                   new TableCell({
                     width: {
                       size: 4505,
@@ -227,6 +203,7 @@ export class DocxService {
                       fill: "#E7E6E6"
                     }
                   }),
+                  this.tvaCell(devis, "#E7E6E6", "Taux TVA"),
                   new TableCell({
                     width: {
                       size: 4505,
@@ -278,17 +255,8 @@ export class DocxService {
                         right: 70
                       },
                     }),
-                    new TableCell({
-                      verticalAlign: VerticalAlign.CENTER,
-                      children: [
-                        new Paragraph({
-                          alignment: "center",
-                          children: [
-                            new TextRun(`${rst.quantite}`)
-                          ]
-                        })
-                      ]
-                    }),
+                    this.quantiteCell(devis, "#FFFFFF", rst.quantite),
+                    this.uniteCell(devis, "#FFFFFF", rst.unite),
                     new TableCell({
                       verticalAlign: VerticalAlign.CENTER,
                       children: [
@@ -300,6 +268,7 @@ export class DocxService {
                         })
                       ]
                     }),
+                    this.tvaCell(devis, "#FFFFFF", rst.tva),
                     new TableCell({
                       verticalAlign: VerticalAlign.CENTER,
                       children: [
@@ -316,19 +285,7 @@ export class DocxService {
               )
             ]
           }),
-          new Paragraph({
-            children: [
-              new TextRun({
-                break: 2
-              }),
-              new TextRun({
-                text: `${devis.info}`
-              }),
-              new TextRun({
-                break: 2
-              })
-            ]
-          }),
+          this.infoPlus(devis),
           new Table({
             rows: [
               new TableRow({
@@ -489,5 +446,141 @@ export class DocxService {
       document.body.removeChild(a);
     });
   }
+
+
+  infoPlus(devis: Devis): Paragraph {
+    if (devis.info == null) {
+      return new Paragraph({
+        children: [
+          new TextRun({
+            break: 2
+          }),
+          new TextRun({
+            text: " "
+          }),
+          new TextRun({
+            break: 2
+          })
+        ]
+      })
+    } else {
+      return new Paragraph({
+        children: [
+          new TextRun({
+            break: 2
+          }),
+          new TextRun({
+            text: `${devis.info}`
+          }),
+          new TextRun({
+            break: 2
+          })
+        ]
+      })
+    }
+  }
+
+
+  uniteCell(devis: Devis, color: string, contenu: any): TableCell | any {
+    let uniteCell: TableCell | any;
+    devis.devisTab.forEach(rst => {
+      if (rst.uniteCell == true) {
+        uniteCell = new TableCell({
+          children: [
+            new Paragraph({
+              alignment: "center",
+              children: [
+                new TextRun(`${contenu}`)
+              ]
+            })
+          ],
+          width: {
+            size: 4505,
+            type: WidthType.DXA,
+          },
+          verticalAlign: VerticalAlign.CENTER,
+          margins: {
+            bottom: 70,
+            top: 70,
+            left: 70,
+            right: 70
+          },
+          shading: {
+            fill: color
+          }
+        });
+      }
+    })
+    return uniteCell;
+  }
+
+  quantiteCell(devis: Devis, color: string, contenu: any): TableCell | any {
+    let uniteCell: TableCell | any;
+    devis.devisTab.forEach(rst => {
+      if (rst.quantiteCell == true) {
+        uniteCell = new TableCell({
+          children: [
+            new Paragraph({
+              alignment: "center",
+              children: [
+                new TextRun(`${contenu}`)
+              ]
+            })
+          ],
+          width: {
+            size: 4505,
+            type: WidthType.DXA,
+          },
+          verticalAlign: VerticalAlign.CENTER,
+          margins: {
+            bottom: 70,
+            top: 70,
+            left: 70,
+            right: 70
+          },
+          shading: {
+            fill: color
+          }
+        });
+      }
+    })
+    return uniteCell;
+  }
+
+  tvaCell(devis: Devis, color: string, contenu: any): TableCell | any {
+    let uniteCell: TableCell | any;
+    devis.devisTab.forEach(rst => {
+      if (rst.tvaCell == true) {
+        uniteCell = new TableCell({
+          children: [
+            new Paragraph({
+              alignment: "center",
+              children: [
+                new TextRun(`${contenu} %`)
+              ]
+            })
+          ],
+          width: {
+            size: 4505,
+            type: WidthType.DXA,
+          },
+          verticalAlign: VerticalAlign.CENTER,
+          margins: {
+            bottom: 70,
+            top: 70,
+            left: 70,
+            right: 70
+          },
+          shading: {
+            fill: color
+          }
+        });
+      }
+    })
+    return uniteCell;
+  }
+
+
+
 
 }

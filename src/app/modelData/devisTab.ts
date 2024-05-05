@@ -8,4 +8,7 @@ export class DevisTab{
     prixTotal!: number;
     tva!: number;
     affichage!: boolean;
+    uniteCell!: boolean;
+    quantiteCell!: boolean;
+    tvaCell!: boolean;
 }

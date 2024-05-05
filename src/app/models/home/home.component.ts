@@ -25,7 +25,7 @@ export class HomeComponent {
   tvaTT: number = 0;
 
   donneeTab: DevisTab[] = [
-    { id: 1, titre: '', description: '', quantite: 1, unite: '', prixUnitaire: 0, prixTotal: 0, tva: 20, affichage: false }
+    { id: 1, titre: '', description: '', quantiteCell: true , quantite: 1, uniteCell: false , unite: '',tvaCell: false, prixUnitaire: 0, prixTotal: 0, tva: 20, affichage: false }
   ];
 
   constructor(
@@ -80,7 +80,7 @@ export class HomeComponent {
     this.donneeTab.map(result => {
       result.affichage = true;
     })
-    const nouvelleLigne = { id: this.donneeTab.length + 1, titre: '', description: '', quantite: 1, unite: '', prixUnitaire: 0, tva: 20, prixTotal: 0, affichage: false };
+    const nouvelleLigne = { id: this.donneeTab.length + 1, titre: '', description: '', quantiteCell: true, tvaCell: false, quantite: 1, uniteCell: false , unite: '', prixUnitaire: 0, tva: 20, prixTotal: 0, affichage: false };
     this.donneeTab.push(nouvelleLigne);
     localStorage.setItem('mapData', JSON.stringify(this.donneeTab));
   }
@@ -97,39 +97,56 @@ export class HomeComponent {
 
   addColumQuantite() {
     this.quantite = true;
+    this.donneeTab.forEach(rst => {
+      rst.quantiteCell = true;
+    })
   }
 
 
   deleteColumQuantite() {
     this.quantite = false;
+    this.donneeTab.forEach(rst => {
+      rst.quantiteCell = false;
+    })
   }
 
   addColumnUnite() {
     this.unite = true;
+    this.donneeTab.forEach(rst => {
+      rst.uniteCell = true;
+      console.log(rst);
+      
+    })
   }
 
   deleteColumnUnite() {
     this.unite = false;
+    this.donneeTab.forEach(rst => {
+      rst.uniteCell = false;
+    })
   }
 
   addTva() {
     this.tva = true;
-    console.log(this.tva);
-
   }
 
   deleteTva() {
     this.tva = false;
-    console.log(this.tva);
   }
 
 
   addTvaLigne() {
     this.tvaLigne = true;
+    this.donneeTab.forEach(rst => {
+      rst.tvaCell = true;
+    })
   }
 
   deleteTvaLigne() {
     this.tvaLigne = false;
+    this.donneeTab.forEach(rst => {
+      rst.tvaCell = false;
+    })
   }
 
   changeUnitee(unitee: string): void {
