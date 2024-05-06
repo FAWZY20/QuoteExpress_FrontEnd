@@ -84,89 +84,110 @@ input {
 .total-bloc-two {
     padding: 0;
 }
-p{
+
+p {
     margin: 0;
     padding: 0;
 }
 
-.bloc-devis{
+.bloc-devis {
     display: flex;
     flex-direction: row;
 }
 
-.reglage{
-    box-shadow: 1px 1px 12px #555;
+@media screen and (max-width: 1000px) {
+    .bloc-devis {
+        display: flex;
+        flex-direction: column-reverse;
+    }
+
+    .reglage {
+        margin-bottom: 10%;
+    }
+
+    .tbl {
+        overflow: auto;
+    }
+    .groupe-btn-telecharge{
+        display: flex;
+        flex-direction: column;
+    }
 }
 
-.reglage-bloc{
+.reglage-bloc {
     font-size: 13px;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-around;
     margin-bottom: 3%;
-    
+
 }
 
-.reglage-bloc-btn{
+.reglage-bloc-btn {
     padding-top: 5%;
+    box-shadow: 1px 1px 12px #555;
     padding-bottom: 5%;
 }
 
-.reglage-col{
+.reglage-col {
     display: flex;
     justify-content: flex-end;
 }
 
-.reglage-btn{
+.reglage-btn {
     font-size: 13px;
     border: 1px solid black;
     border-radius: 0;
 }
 
-.btn-right{
+.btn-right {
     border-left-width: 0;
 }
 
-.reglage-bloc-title{
+.reglage-bloc-title {
     background-color: #E6EBF3;
     font-size: 25px;
     font-weight: bold;
     padding: 5%;
 }
 
-.tab-add-ligne{
+.tab-add-ligne {
     border-radius: 50px;
     font-weight: bold;
     color: white;
 }
 
-.add-Column{
+.add-Column {
     display: flex;
     justify-content: center;
     align-items: center;
 }
-.groupe-btn{
+
+.groupe-btn {
     background-color: white;
     font-size: 23px;
     font-weight: bold;
 }
-.groupe-btn-telecharge{
+
+.groupe-btn-telecharge {
     padding-top: 3%;
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
 }
-.add-Column-btn{
-    cursor: pointer;  
+
+.add-Column-btn {
+    cursor: pointer;
 }
-.prixTotal{
+
+.prixTotal {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
 }
 
-.btn-telecharger{
+.btn-telecharger {
     display: grid;
-    margin-top: 20px;
+    margin-top: 5%;
 }
