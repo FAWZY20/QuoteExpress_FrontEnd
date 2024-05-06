@@ -18,6 +18,12 @@
     margin-bottom: 1%;
 }
 
+@media screen and (max-width: 1000px){
+    .header-bloc {
+        padding-top: 30%;
+    }
+}
+
 .header-bloc-list {
     display: flex;
     flex-direction: column;
