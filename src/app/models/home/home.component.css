@@ -109,8 +109,12 @@ p {
         overflow: auto;
     }
     .groupe-btn-telecharge{
+        margin-top: 4%;
         display: flex;
-        flex-direction: column;
+        flex-direction: column !important;
+    }
+    .groupe-btn{
+        margin-bottom: 5%;
     }
     .total{
         display: flex;
