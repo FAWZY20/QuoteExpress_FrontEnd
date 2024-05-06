@@ -112,6 +112,10 @@ p {
         display: flex;
         flex-direction: column;
     }
+    .total{
+        display: flex;
+        flex-direction: column;
+    }
 }
 
 .reglage-bloc {
