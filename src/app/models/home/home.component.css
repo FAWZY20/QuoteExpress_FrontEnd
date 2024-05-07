@@ -143,9 +143,16 @@ p {
 
 }
 
+.reglage{
+    box-shadow: 1px 1px 12px #555;
+}
+
+.reglage p{
+    font-size: 20px;
+}
+
 .reglage-bloc-btn {
     padding-top: 5%;
-    box-shadow: 1px 1px 12px #555;
     padding-bottom: 5%;
 }
 
@@ -209,4 +216,8 @@ p {
 .btn-telecharger {
     display: grid;
     margin-top: 5%;
+}
+
+.btn-telecharger button{
+    font-size: 20px;
 }
