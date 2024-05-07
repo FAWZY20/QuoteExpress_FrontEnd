@@ -4,7 +4,7 @@
 
 .header-bloc {
     display: flex;
-    padding-top: 8%;
+    padding-top: 3%;
     color: white;
     flex-direction: column;
     align-items: center;
@@ -53,13 +53,7 @@ li {
 }
 
 .navbar {
-    overflow: hidden;
-    top: 0;
-    padding: 0;
-    z-index: 1;
-    position: fixed;
     background-color: #4608AD;
-    width: 100%;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
