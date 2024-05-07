@@ -64,6 +64,10 @@ input {
     align-items: flex-end;
 }
 
+.total{
+    padding-top: 20%;
+}
+
 
 
 .total-bloc-titre {
