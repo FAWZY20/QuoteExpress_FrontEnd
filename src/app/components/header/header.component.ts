@@ -6,10 +6,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent {
-  scrollToDevis(){
-    var element = document.querySelector('.header-bloc-list');
-    if (element) {
-        element.scrollIntoView({ behavior: 'smooth' });
-    }
+  el: any;
+  scroll(id: string) {
+    console.log(`scrolling to ${id}`);
+    this.el = document.getElementsByClassName(id);
+    this.el.scrollIntoView();
   }
 }

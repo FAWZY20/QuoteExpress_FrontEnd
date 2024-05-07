@@ -96,7 +96,7 @@ p {
 }
 
 @media screen and (max-width: 1000px) {
-    .devis-info, .devis-info-client{
+    .devis-info, .de{
         margin-bottom: 10%;
     }
     .question{

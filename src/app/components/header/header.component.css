@@ -1,5 +1,5 @@
 .header {
-    background-color: #4F5052;
+    background-color: #4608AD;
 }
 
 .header-bloc {
@@ -58,17 +58,17 @@ li {
     padding: 0;
     z-index: 1;
     position: fixed;
-    background-color: #4F5052;
+    background-color: #4608AD;
     width: 100%;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-    box-shadow: 2px 2px 12px #4F5052;
+    box-shadow: 2px 2px 12px #4608AD;
 }
 
 .btn-devis {
-    border: 0px solid #FECC39;
-    background-color: #FECC39 !important;
+    border: 0px solid #FFFF99;
+    background-color: #FFFF99 !important;
     color: black;
     font-weight: 650;
     font-size: 23px;

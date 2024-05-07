@@ -3,7 +3,6 @@ import { Packer, Document, Paragraph, TextRun, BorderStyle, Table, TableRow, Tab
 import { Devis } from '../modelData/devis';
 import { DevisTab } from '../modelData/devisTab';
 
-
 @Injectable({
   providedIn: 'root'
 })
@@ -434,7 +433,7 @@ export class DocxService {
       }],
     });
 
-    Packer.toBlob(doc).then(blob => {
+    Packer.toBlob(doc).then(async blob => {
       // Télécharger le fichier DOCX
       const url = window.URL.createObjectURL(blob);
       const a = document.createElement("a");
