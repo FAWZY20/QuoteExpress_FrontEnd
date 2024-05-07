@@ -216,6 +216,7 @@ p {
 .btn-telecharger {
     display: grid;
     margin-top: 5%;
+    margin-bottom: 7%;
 }
 
 .btn-telecharger button{
