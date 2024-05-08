@@ -1,6 +1,7 @@
 import { DevisTab } from "./devisTab";
 
 export class Devis{
+
     societe!:string;
     adresseSociete!:string;
     codePostalSociete!:string;
@@ -23,4 +24,5 @@ export class Devis{
     devisTab!: DevisTab[];
     moneyUnite: String = "€";
     info!: String;
+
 }

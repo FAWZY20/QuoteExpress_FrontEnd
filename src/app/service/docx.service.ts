@@ -2,16 +2,16 @@ import { Injectable } from '@angular/core';
 import { Packer, Document, Paragraph, TextRun, BorderStyle, Table, TableRow, TableCell, WidthType, VerticalAlign, TableAnchorType, RelativeHorizontalPosition, OverlapType, RelativeVerticalPosition, TableLayoutType, TableLayout } from "docx";
 import { Devis } from '../modelData/devis';
 import { DevisTab } from '../modelData/devisTab';
+import jsPDF from 'jspdf';
+import { PDFDocument, StandardFonts, rgb } from 'pdf-lib';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DocxService {
 
-  constructor() { }
-
-  generateDocx(devis: Devis) {
-    const doc = new Document({
+  doc: any = (devis: Devis) => {
+    return new Document({
       sections: [{
         properties: {},
         children: [
@@ -433,6 +433,12 @@ export class DocxService {
       }],
     });
 
+  };
+
+
+  constructor() { }
+
+  generateDocx(doc: Document) {
     Packer.toBlob(doc).then(async blob => {
       // Télécharger le fichier DOCX
       const url = window.URL.createObjectURL(blob);
@@ -440,12 +446,20 @@ export class DocxService {
       document.body.appendChild(a);
       a.href = url;
       a.download = "Devis.docx";
+      console.log("voici le lien " + a);
       a.click();
       window.URL.revokeObjectURL(url);
       document.body.removeChild(a);
     });
   }
 
+  printDocx(data: Document): void {
+
+  }
+
+  generatePdf(doc: Document) {
+    
+  }
 
   infoPlus(devis: Devis): Paragraph {
     if (devis.info == null) {

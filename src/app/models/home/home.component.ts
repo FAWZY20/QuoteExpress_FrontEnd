@@ -1,8 +1,11 @@
-import { ChangeDetectorRef, Component } from '@angular/core';
+import { ChangeDetectorRef, Component, ElementRef, ViewChild } from '@angular/core';
 import { Devis } from 'src/app/modelData/devis';
 import { map } from 'rxjs';
 import { DevisTab } from 'src/app/modelData/devisTab';
 import { DocxService } from 'src/app/service/docx.service';
+import { PdfGeneratorComponent } from 'src/app/components/pdf-generator/pdf-generator.component';
+import jsPDF from 'jspdf';
+import { Route, Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -30,6 +33,7 @@ export class HomeComponent {
 
   constructor(
     private docxService: DocxService,
+    private router: Router,
   ) {
     this.devis = new Devis();
   }
@@ -48,10 +52,6 @@ export class HomeComponent {
     });
     this.devis.totalHt = this.totalHt;
     return this.totalHt;
-  }
-
-  printDevis() {
-   
   }
 
   calculTva() {
@@ -77,7 +77,21 @@ export class HomeComponent {
 
   generateDevis(): void {
     this.devis.devisTab = this.donneeTab.slice();
-    this.docxService.generateDocx(this.devis);
+    const document = this.docxService.doc(this.devis);
+    this.docxService.generateDocx(document);
+  }
+
+  generatePDF() {
+
+  }
+
+  printDevis(): void {
+    localStorage.setItem("devis", JSON.stringify(this.devis));
+    this.router.navigate(['/devis']).then(() => {
+      setTimeout(() => {
+        window.print();
+      }, 1000);
+    });
   }
 
   addColumn() {

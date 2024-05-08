@@ -1,0 +1,143 @@
+<div #pdfContent class="container">
+    <div class="row devis       ">
+        <div class="devis-info col-lg">
+            <div>
+                <p>{{devisJson.societe}}</p>
+            </div>
+            <div>
+                <p>{{devisJson.adresseSociete}}</p>
+            </div>
+            <div class="adresse">
+                <div>
+                    <p>{{devisJson.codePostalSociete}}</p>
+                </div>
+                <div>
+                    <p>{{devisJson.villeSociete}}</p>
+                </div>
+            </div>
+            <div>
+                <p>{{devisJson.siretSociete}}</p>
+            </div>
+            <div>
+                <p>{{devisJson.tvaSociete}}</p>
+            </div>
+            <div>
+                <p>{{devisJson.telSociete}}</p>
+            </div>
+        </div>
+        <div class="devis-info-client col-lg">
+            <div>
+                <p>{{devisJson.nomClient}}</p>
+            </div>
+            <div>
+                <p>{{devisJson.adresseClient}}</p>
+            </div>
+            <div class="adresse">
+                <div>
+                    <p>{{devisJson.codePostalClient}}</p>
+                </div>
+                <div>
+                    <p>{{devisJson.villeClient}}</p>
+                </div>
+            </div>
+            <div>
+                <p>{{devisJson.siretClient}}</p>
+            </div>
+            <div>
+                <p>{{devisJson.telClient}}</p>
+            </div>
+        </div>
+        <div class="date-devis">
+            <div class="date-devis-bloc date-titre">
+                <p>Date du devisJson</p>
+            </div>
+            <div class="date-devis-bloc">
+                <p>{{devisJson.dateDevis}}</p>
+            </div>
+        </div>
+        <div class="tbl">
+            <table class="table table-bordered">
+                <thead class="table-head">
+                    <tr>
+                        <th scope="col">Description</th>
+                        <th scope="col">Quantité</th>
+                        <th scope="col">Unité</th>
+                        <th scope="col">Prix unitaire HT</th>
+                        <th scope="col">Taux TVA</th>
+                        <th scope="col">Prix total HT</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let donnee of devisTabJson; let i = index">
+                        <td>
+                            <div>
+                                <div>
+                                    {{donnee.titre}}
+                                </div>
+                            </div>
+                            <div>
+                                <div>
+                                    {{donnee.description}}
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div>
+                                {{donnee.quantite}}
+                            </div>
+                        </td>
+                        <td>
+                            {{donnee.unite}}
+                        </td>
+                        <td>
+                            <div>
+                                {{donnee.prixUnitaire}} {{donnee.unite}}
+                            </div>
+                        </td>
+                        <td>
+                            {{donnee.tva}}
+                        </td>
+                        <td class="prixTotal">
+                            <div>
+                                {{donnee.prixTotal}} {{donnee.unite}}
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="total">
+            <div class="col-lg-6">
+                <p>{{devisJson.info}} </p>
+            </div>
+            <div class="col-lg-6 total-bloc">
+                <div class="col-lg-6 total-bloc-one">
+                    <div>
+                        <div class="total-bloc-titre">
+                            <p>Total HT</p>
+                        </div>
+                        <div class="total-bloc-titre">
+                            <p>TVA ({{devisJson.tva}}%)</p>
+                        </div>
+                    </div>
+                    <div class="total-bloc-titre">
+                        <p>Total TTC</p>
+                    </div>
+                </div>
+                <div class="col-lg-6 total-bloc-two">
+                    <div>
+                        <div class="total-bloc-prix">
+                            <p>{{devisJson.totalHt}}</p>
+                        </div>
+                        <div class="total-bloc-prix">
+                            <p>{{devisJson.tvaTotal}} </p>
+                        </div>
+                    </div>
+                    <div class="total-bloc-prix">
+                        <p>{{devisJson.totalTtc}} </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

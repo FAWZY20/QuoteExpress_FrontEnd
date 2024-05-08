@@ -1,22 +1,11 @@
-.question {
-    margin-top: 5%;
-}
 
-.question-title {
-    font-size: 25px;
-    color: blacks;
-    font-weight: bold;
-}
-
-.question-bloc {
-    margin-bottom: 5%;
-}
 
 .table-head {
     background-color: #E7E6E6;
 }
 
 .devis {
+    display: contents;
     padding: 2%;
     box-shadow: 1px 1px 12px #555;
 }
@@ -64,7 +53,7 @@ input {
     align-items: flex-end;
 }
 
-.total {
+.total{
     padding-top: 20%;
 }
 
@@ -101,16 +90,12 @@ p {
 }
 
 @media screen and (max-width: 1000px) {
-
-    .devis-info,
-    .de {
+    .devis-info, .de{
         margin-bottom: 10%;
     }
-
-    .question {
+    .question{
         padding: 4%;
     }
-
     .bloc-devis {
         display: flex;
         flex-direction: column-reverse;
@@ -123,18 +108,15 @@ p {
     .tbl {
         overflow: auto;
     }
-
-    .groupe-btn-telecharge {
+    .groupe-btn-telecharge{
         margin-top: 4%;
         display: flex;
         flex-direction: column !important;
     }
-
-    .groupe-btn {
+    .groupe-btn{
         margin-bottom: 5%;
     }
-
-    .total {
+    .total{
         display: flex;
         flex-direction: column;
     }
@@ -150,11 +132,11 @@ p {
 
 }
 
-.reglage {
+.reglage{
     box-shadow: 1px 1px 12px #555;
 }
 
-.reglage p {
+.reglage p{
     font-size: 20px;
 }
 
@@ -226,16 +208,15 @@ p {
     margin-bottom: 7%;
 }
 
-.btn-telecharger button {
+.btn-telecharger button{
     font-size: 20px;
 }
 
 @media print {
-
-    /* Styles pour l'impression */
-    .no-print {
-        display: none;
+    /* Styles spécifiques pour l'impression */
+    body {
+      /* Assurez-vous que le corps de la page prend toute la largeur de la page */
+      width: 100%;
+      margin: 0;
     }
-
-    /* Autres styles d'impression */
-}
+  }

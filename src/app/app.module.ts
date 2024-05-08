@@ -7,6 +7,7 @@ import { HomeComponent } from './models/home/home.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { ContactFormComponent } from './components/contact-form/contact-form.component';
+import { PdfGeneratorComponent } from './components/pdf-generator/pdf-generator.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { ContactFormComponent } from './components/contact-form/contact-form.com
     HomeComponent,
     HeaderComponent,
     FooterComponent,
-    ContactFormComponent
+    ContactFormComponent,
+    PdfGeneratorComponent
   ],
   imports: [
     FormsModule,
