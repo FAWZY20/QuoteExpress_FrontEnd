@@ -9,7 +9,7 @@ export class HeaderComponent {
   el: any;
   scroll(id: string) {
     console.log(`scrolling to ${id}`);
-    this.el = document.getElementsByClassName(id);
+    this.el = document.getElementById(id);
     this.el.scrollIntoView();
   }
 }

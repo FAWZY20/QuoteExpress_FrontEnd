@@ -452,11 +452,6 @@ export class DocxService {
       document.body.removeChild(a);
     });
   }
-
-  printDocx(data: Document): void {
-
-  }
-
   generatePdf(doc: Document) {
     
   }
