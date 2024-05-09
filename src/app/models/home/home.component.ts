@@ -86,10 +86,12 @@ export class HomeComponent {
   }
 
   printDevis(): void {
+    localStorage.setItem('mapData', JSON.stringify(this.donneeTab));
     localStorage.setItem("devis", JSON.stringify(this.devis));
     this.router.navigate(['/devis']).then(() => {
       setTimeout(() => {
         window.print();
+        localStorage.clear();
       }, 1000);
     });
   }

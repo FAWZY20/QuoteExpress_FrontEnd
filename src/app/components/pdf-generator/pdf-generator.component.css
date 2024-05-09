@@ -214,8 +214,12 @@ p {
 
 @media print {
     /* Styles spécifiques pour l'impression */
-    body {
+    .table-head{
+        background-color: #E7E6E6 !important;
+    }
+    .devis {
       /* Assurez-vous que le corps de la page prend toute la largeur de la page */
+      color: black !important;
       width: 100%;
       margin: 0;
     }

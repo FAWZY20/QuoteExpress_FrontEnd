@@ -1,5 +1,5 @@
 <div #pdfContent class="container">
-    <div class="row devis       ">
+    <div class="row devis">
         <div class="devis-info col-lg">
             <div>
                 <p>{{devisJson.societe}}</p>
@@ -60,10 +60,10 @@
                 <thead class="table-head">
                     <tr>
                         <th scope="col">Description</th>
-                        <th scope="col">Quantité</th>
-                        <th scope="col">Unité</th>
+                        <th scope="col" *ngIf="!devisTabJson.quantiteCell">Quantité</th>
+                        <th scope="col" *ngIf="devisTabJson.uniteCell">Unité</th>
                         <th scope="col">Prix unitaire HT</th>
-                        <th scope="col">Taux TVA</th>
+                        <th scope="col" *ngIf="devisTabJson.tvaCell">Taux TVA</th>
                         <th scope="col">Prix total HT</th>
                     </tr>
                 </thead>
@@ -81,25 +81,25 @@
                                 </div>
                             </div>
                         </td>
-                        <td>
+                        <td *ngIf="!devisTabJson.quantiteCell">
                             <div>
                                 {{donnee.quantite}}
                             </div>
                         </td>
-                        <td>
-                            {{donnee.unite}}
+                        <td *ngIf="devisTabJson.uniteCell">
+                            {{devisJson.moneyUnite}}
                         </td>
                         <td>
                             <div>
-                                {{donnee.prixUnitaire}} {{donnee.unite}}
+                                {{donnee.prixUnitaire}} {{devisJson.moneyUnite}}
                             </div>
                         </td>
-                        <td>
+                        <td *ngIf="devisTabJson.tvaCell">
                             {{donnee.tva}}
                         </td>
-                        <td class="prixTotal">
+                        <td>
                             <div>
-                                {{donnee.prixTotal}} {{donnee.unite}}
+                                {{donnee.prixTotal}} {{devisJson.moneyUnite}}
                             </div>
                         </td>
                     </tr>
@@ -127,14 +127,14 @@
                 <div class="col-lg-6 total-bloc-two">
                     <div>
                         <div class="total-bloc-prix">
-                            <p>{{devisJson.totalHt}}</p>
+                            <p>{{devisJson.totalHt}} {{devisJson.moneyUnite}}</p>
                         </div>
                         <div class="total-bloc-prix">
-                            <p>{{devisJson.tvaTotal}} </p>
+                            <p>{{devisJson.tvaTotal}} {{devisJson.moneyUnite}}</p>
                         </div>
                     </div>
                     <div class="total-bloc-prix">
-                        <p>{{devisJson.totalTtc}} </p>
+                        <p>{{devisJson.totalTtc}} {{devisJson.moneyUnite}}</p>
                     </div>
                 </div>
             </div>
