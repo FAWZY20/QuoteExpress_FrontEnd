@@ -92,6 +92,7 @@ export class HomeComponent {
       setTimeout(() => {
         window.print();
         localStorage.clear();
+        this.router.navigate(['/'])
       }, 1000);
     });
   }
