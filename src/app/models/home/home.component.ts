@@ -1,11 +1,10 @@
 import { ChangeDetectorRef, Component, ElementRef, ViewChild } from '@angular/core';
 import { Devis } from 'src/app/modelData/devis';
-import { map } from 'rxjs';
 import { DevisTab } from 'src/app/modelData/devisTab';
 import { DocxService } from 'src/app/service/docx.service';
 import { PdfGeneratorComponent } from 'src/app/components/pdf-generator/pdf-generator.component';
-import jsPDF from 'jspdf';
 import { Route, Router } from '@angular/router';
+import { PdfService } from 'src/app/service/pdf.service';
 
 @Component({
   selector: 'app-home',
@@ -32,6 +31,7 @@ export class HomeComponent {
   ];
 
   constructor(
+    private pdfService: PdfService,
     private docxService: DocxService,
     private router: Router,
   ) {
@@ -81,8 +81,9 @@ export class HomeComponent {
     this.docxService.generateDocx(document);
   }
 
-  generatePDF() {
-
+  generatePDf() {
+    this.devis.devisTab = this.donneeTab.slice();
+    this.pdfService.generatePdf(this.devis)
   }
 
   printDevis(): void {
