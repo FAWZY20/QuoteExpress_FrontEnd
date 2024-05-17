@@ -320,9 +320,15 @@
                         </div>
                     </div>
                 </div>
-                <div class="btn-telecharger">
-                    <button type="submit" (click)="generateDevis()" class="btn btn-warning">Télécharger mon devis
-                        <img src="../../../assets/icon/download.svg" alt=""> </button>
+                <div class="telecharger">
+                    <div class="btn-telecharger">
+                        <button type="submit" (click)="generateDevis()" class="btn btn-warning">Télécharger en Word
+                            <img src="../../../assets/icon/download.svg" alt=""> </button>
+                    </div>
+                    <div class="btn-telecharger">
+                        <button type="submit" (click)="generatePDf()" class="btn btn-warning">Télécharger en PDF
+                            <img src="../../../assets/icon/download.svg" alt=""> </button>
+                    </div>
                 </div>
             </div>
         </div>

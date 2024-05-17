@@ -225,6 +225,11 @@ p {
     margin-top: 5%;
     margin-bottom: 7%;
 }
+.telecharger{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
 
 .btn-telecharger button {
     font-size: 20px;
