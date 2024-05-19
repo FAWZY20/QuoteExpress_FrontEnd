@@ -15,17 +15,15 @@ export class PdfService {
   constructor() { }
 
   tableBody = (devis: Devis) => [
-    ...devis.devisTab.map(item => 
-      [
-        { text: 'Description', fillColor: '#E7E6E6', alignment: 'center' },
-        item.quantiteCell ? { text: 'Quantité', fillColor: '#E7E6E6', alignment: 'center' } : null,
-        item.uniteCell ? { text: 'Unité', fillColor: '#E7E6E6', alignment: 'center' } : null,
-        { text: 'Prix unitaire HT', fillColor: '#E7E6E6', alignment: 'center' },
-        item.tvaCell ? { text: 'Taux TVA', fillColor: '#E7E6E6', alignment: 'center' } : null,
-        { text: 'Prix total HT', fillColor: '#E7E6E6', alignment: 'center' }
-      ].filter(cell => cell !== null)
-    ),
-    ...devis.devisTab.map(item => 
+    [
+      { text: 'Description', fillColor: '#E7E6E6', alignment: 'center' },
+      devis.devisTab.some(item => item.quantiteCell) ? { text: 'Quantité', fillColor: '#E7E6E6', alignment: 'center' } : null,
+      devis.devisTab.some(item => item.uniteCell) ? { text: 'Unité', fillColor: '#E7E6E6', alignment: 'center' } : null,
+      { text: 'Prix unitaire HT', fillColor: '#E7E6E6', alignment: 'center' },
+      devis.devisTab.some(item => item.tvaCell) ? { text: 'Taux TVA', fillColor: '#E7E6E6', alignment: 'center' } : null,
+      { text: 'Prix total HT', fillColor: '#E7E6E6', alignment: 'center' }
+    ].filter(cell => cell !== null),
+    ...devis.devisTab.map(item =>
       [
         `${item.titre}\n ${item.description}`,
         item.quantiteCell ? `${item.quantite}` : null,
@@ -36,7 +34,7 @@ export class PdfService {
       ].filter(cell => cell !== null)
     )
   ];
-  
+
 
   generatePdf(devis: Devis) {
     const documentDefinition: any = {
@@ -77,7 +75,7 @@ export class PdfService {
                 widths: ['18%', '18%'],
                 body: [
                   [
-                    { text: 'Date du devis', style: 'devisDate', fillColor: '#E7E6E6'},
+                    { text: 'Date du devis', style: 'devisDate', fillColor: '#E7E6E6' },
                     { text: `${devis.dateDevis}`, style: 'devisDate' }
                   ]
                 ]
@@ -90,7 +88,7 @@ export class PdfService {
           columns: [
             {
               table: {
-                widths: ['17%', '17%','17%', '17%', '17%', '17%'],
+                widths: ['17%', '17%', '17%', '17%', '17%', '17%'],
                 body: this.tableBody(devis)
               }
             }
