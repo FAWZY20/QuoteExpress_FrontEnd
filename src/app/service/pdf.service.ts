@@ -27,12 +27,12 @@ export class PdfService {
     ),
     ...devis.devisTab.map(item => 
       [
-        `${item.description}`,
+        `${item.titre}\n ${item.description}`,
         item.quantiteCell ? `${item.quantite}` : null,
         item.uniteCell ? `${item.unite}` : null,
-        `${item.prixUnitaire}`,
+        `${item.prixUnitaire} ${devis.moneyUnite}`,
         item.tvaCell ? `${item.tva}` : null,
-        `${item.prixTotal}`,
+        `${item.prixTotal} ${devis.moneyUnite}`,
       ].filter(cell => cell !== null)
     )
   ];
@@ -77,7 +77,7 @@ export class PdfService {
                 widths: ['18%', '18%'],
                 body: [
                   [
-                    { text: 'Date du devis', style: 'devisDate' },
+                    { text: 'Date du devis', style: 'devisDate', fillColor: '#E7E6E6'},
                     { text: `${devis.dateDevis}`, style: 'devisDate' }
                   ]
                 ]
@@ -109,15 +109,15 @@ export class PdfService {
                 body: [
                   [
                     { text: 'Total HT', style: 'titleTabTotal' },
-                    { text: `${devis.totalHt}`, style: 'valueTotalTab' }
+                    { text: `${devis.totalHt} ${devis.moneyUnite}`, style: 'valueTotalTab' }
                   ],
                   [
                     { text: 'TVA (20%)', style: 'titleTabTotal' },
-                    { text: `${devis.tvaTotal}`, style: 'valueTotalTab' }
+                    { text: `${devis.tvaTotal} ${devis.moneyUnite}`, style: 'valueTotalTab' }
                   ],
                   [
                     { text: 'Total TTC', style: 'titleTabTotal' },
-                    { text: `${devis.totalTtc}`, style: 'valueTotalTab' }
+                    { text: `${devis.totalTtc} ${devis.moneyUnite} `, style: 'valueTotalTab' }
                   ]
                 ]
               },
