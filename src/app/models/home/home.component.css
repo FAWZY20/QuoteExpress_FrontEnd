@@ -222,13 +222,12 @@ p {
 
 .btn-telecharger {
     display: grid;
-    margin-top: 5%;
-    margin-bottom: 7%;
+    margin-bottom: 2%;
 }
 .telecharger{
+    margin-top: 3%;
     display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
+    flex-direction: column;
 }
 
 .btn-telecharger button {
