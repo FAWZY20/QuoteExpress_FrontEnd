@@ -99,22 +99,22 @@ export class PdfService {
           columns: [
             {
 
-              text: `${devis.infoDevis}`,
+              text: `${devis.info}`,
               style: 'infoDevis'
             },
             {
               table: {
                 body: [
                   [
-                    { text: 'Total HT', style: 'titleTabTotal' },
+                    { text: 'Total HT', style: 'titleTabTotal',fillColor: '#E7E6E6' },
                     { text: `${devis.totalHt} ${devis.moneyUnite}`, style: 'valueTotalTab' }
                   ],
                   [
-                    { text: 'TVA (20%)', style: 'titleTabTotal' },
+                    { text: 'TVA (' + `${devis.tva}` +'%)', style: 'titleTabTotal',fillColor: '#E7E6E6' },
                     { text: `${devis.tvaTotal} ${devis.moneyUnite}`, style: 'valueTotalTab' }
                   ],
                   [
-                    { text: 'Total TTC', style: 'titleTabTotal' },
+                    { text: 'Total TTC', style: 'titleTabTotal',fillColor: '#E7E6E6' },
                     { text: `${devis.totalTtc} ${devis.moneyUnite} `, style: 'valueTotalTab' }
                   ]
                 ]
