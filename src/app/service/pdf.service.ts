@@ -16,24 +16,42 @@ export class PdfService {
 
   tableBody = (devis: Devis) => [
     [
-      { text: 'Description', fillColor: '#E7E6E6', alignment: 'center' },
-      devis.devisTab.some(item => item.quantiteCell) ? { text: 'Quantité', fillColor: '#E7E6E6', alignment: 'center' } : null,
-      devis.devisTab.some(item => item.uniteCell) ? { text: 'Unité', fillColor: '#E7E6E6', alignment: 'center' } : null,
-      { text: 'Prix unitaire HT', fillColor: '#E7E6E6', alignment: 'center' },
-      devis.devisTab.some(item => item.tvaCell) ? { text: 'Taux TVA', fillColor: '#E7E6E6', alignment: 'center' } : null,
-      { text: 'Prix total HT', fillColor: '#E7E6E6', alignment: 'center' }
+      { text: 'Description', fillColor: '#E7E6E6', alignment: 'center', widths: '17%' },
+      devis.devisTab.some(item => item.quantiteCell) ? { text: 'Quantité', fillColor: '#E7E6E6', alignment: 'center', widths: '17%' } : null,
+      devis.devisTab.some(item => item.uniteCell) ? { text: 'Unité', fillColor: '#E7E6E6', alignment: 'center', widths: '17%' } : null,
+      { text: 'Prix unitaire HT', fillColor: '#E7E6E6', alignment: 'center', widths: '17%' },
+      devis.devisTab.some(item => item.tvaCell) ? { text: 'Taux TVA', fillColor: '#E7E6E6', alignment: 'center', widths: '17%' } : null,
+      { text: 'Prix total HT', fillColor: '#E7E6E6', alignment: 'center', widths: '17%' }
     ].filter(cell => cell !== null),
+
     ...devis.devisTab.map(item =>
       [
         `${item.titre}\n ${item.description}`,
         item.quantiteCell ? `${item.quantite}` : null,
         item.uniteCell ? `${item.unite}` : null,
         `${item.prixUnitaire} ${devis.moneyUnite}`,
-        item.tvaCell ? `${item.tva}` : null,
+        item.tvaCell ? `${item.tva} %` : null,
         `${item.prixTotal} ${devis.moneyUnite}`,
       ].filter(cell => cell !== null)
     )
   ];
+
+  cellWidth = (devis: Devis): any => {
+    console.log('====================================');
+    console.log(devis.devisTab.some(item => item.quantiteCell) + "" + devis.devisTab.some(item => item.uniteCell)  + "" +devis.devisTab.some(item => item.tvaCell));
+    console.log('====================================');
+    if (!devis.devisTab.some(item => item.quantiteCell) || !devis.devisTab.some(item => item.uniteCell) || !devis.devisTab.some(item => item.tvaCell)) {
+      return ['35%', '23%', '23%', '23%', '23%']
+    } if (!devis.devisTab.some(item => item.quantiteCell) && !devis.devisTab.some(item => item.uniteCell) ||
+      !devis.devisTab.some(item => item.tvaCell) && !devis.devisTab.some(item => item.uniteCell) ||
+      !devis.devisTab.some(item => item.quantiteCell) && !devis.devisTab.some(item => item.tvaCell)) {
+      return ['35%', '23%', '23%', '23%']
+    } if (!devis.devisTab.some(item => item.quantiteCell) && !devis.devisTab.some(item => item.uniteCell) && !devis.devisTab.some(item => item.tvaCell)) {
+      return ['50%', '50%', '50%']
+    } else {
+      return ['17%', '17%', '17%', '17%', '17%', '17%']
+    }
+  }
 
 
   generatePdf(devis: Devis) {
@@ -88,7 +106,7 @@ export class PdfService {
           columns: [
             {
               table: {
-                widths: ['17%', '17%', '17%', '17%', '17%', '17%'],
+                widths: this.cellWidth(devis),
                 body: this.tableBody(devis)
               }
             }
@@ -106,15 +124,15 @@ export class PdfService {
               table: {
                 body: [
                   [
-                    { text: 'Total HT', style: 'titleTabTotal',fillColor: '#E7E6E6' },
+                    { text: 'Total HT', style: 'titleTabTotal', fillColor: '#E7E6E6' },
                     { text: `${devis.totalHt} ${devis.moneyUnite}`, style: 'valueTotalTab' }
                   ],
                   [
-                    { text: 'TVA (' + `${devis.tva}` +'%)', style: 'titleTabTotal',fillColor: '#E7E6E6' },
+                    { text: 'TVA (' + `${devis.tva}` + '%)', style: 'titleTabTotal', fillColor: '#E7E6E6' },
                     { text: `${devis.tvaTotal} ${devis.moneyUnite}`, style: 'valueTotalTab' }
                   ],
                   [
-                    { text: 'Total TTC', style: 'titleTabTotal',fillColor: '#E7E6E6' },
+                    { text: 'Total TTC', style: 'titleTabTotal', fillColor: '#E7E6E6' },
                     { text: `${devis.totalTtc} ${devis.moneyUnite} `, style: 'valueTotalTab' }
                   ]
                 ]
