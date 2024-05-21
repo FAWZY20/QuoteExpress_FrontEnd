@@ -131,7 +131,7 @@ p {
     }
 
     .groupe-btn {
-        font-size: 10px;
+        font-size: 20px !important;
         margin-bottom: 5%;
     }
 
