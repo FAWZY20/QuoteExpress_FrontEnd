@@ -125,13 +125,13 @@ p {
     }
 
     .groupe-btn-telecharge {
-        font-size: 4px;
         margin-top: 4%;
         display: flex;
         flex-direction: column !important;
     }
 
     .groupe-btn {
+        font-size: 10px;
         margin-bottom: 5%;
     }
 
