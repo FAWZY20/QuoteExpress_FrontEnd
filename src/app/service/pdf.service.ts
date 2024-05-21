@@ -25,7 +25,7 @@ export class PdfService {
     ].filter(cell => cell !== null),
 
     ...devis.devisTab.map(item =>
-      [
+      [                
         `${item.titre}\n ${item.description}`,
         item.quantiteCell ? `${item.quantite}` : null,
         item.uniteCell ? `${item.unite}` : null,
@@ -37,9 +37,6 @@ export class PdfService {
   ];
 
   cellWidth = (devis: Devis): any => {
-    console.log('====================================');
-    console.log(devis.devisTab.some(item => item.quantiteCell) + "" + devis.devisTab.some(item => item.uniteCell)  + "" +devis.devisTab.some(item => item.tvaCell));
-    console.log('====================================');
     if (!devis.devisTab.some(item => item.quantiteCell) || !devis.devisTab.some(item => item.uniteCell) || !devis.devisTab.some(item => item.tvaCell)) {
       return ['35%', '23%', '23%', '23%', '23%']
     } if (!devis.devisTab.some(item => item.quantiteCell) && !devis.devisTab.some(item => item.uniteCell) ||

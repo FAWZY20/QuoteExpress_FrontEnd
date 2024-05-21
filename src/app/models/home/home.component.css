@@ -125,6 +125,7 @@ p {
     }
 
     .groupe-btn-telecharge {
+        font-size: 4px;
         margin-top: 4%;
         display: flex;
         flex-direction: column !important;
