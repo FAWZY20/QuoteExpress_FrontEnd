@@ -7,8 +7,6 @@ jobs:
   test-node:
     # Install node dependencies and run tests
     executor: node/default
-    docker:
-      - image: circleci/node:14-browsers # Utilisez une image CircleCI avec Chrome
     steps:
       - checkout
       - node/install-packages:
