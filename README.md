@@ -1,27 +1,44 @@
-# GenerateDevisFrontend
+# Devis Express
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.1.
+## Description
 
-## Development server
+Devis Express est une application Angular qui génère des devis en Word ou PDF. L'application permet l'ajout de TVA, de quantités, et d'unités de mesure.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Fonctionnalités
 
-## Code scaffolding
+- Génération de devis en Word et PDF
+- Gestion de la TVA
+- Quantités et unités de mesure
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Installation
 
-## Build
+1. Clonez le dépôt :
+    ```bash
+    git clone https://github.com/votre-utilisateur/devis-express.git
+    cd devis-express
+    ```
+2. Installez les dépendances :
+    ```bash
+    npm install
+    ```
+3. Démarrez l'application :
+    ```bash
+    ng serve
+    ```
+4. Accédez à `http://localhost:4200` dans votre navigateur.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## Utilisation
 
-## Running unit tests
+1. Créez un nouveau devis.
+2. Remplissez les informations nécessaires.
+3. Sélectionnez les options (TVA, quantités, unités).
+4. Cliquez sur "Générer" pour télécharger le devis en Word ou PDF.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Auteurs
 
-## Running end-to-end tests
+- **Votre Nom** - [FAWZY20](https://github.com/FAWZY20)
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+## License
 
-## Further help
+Sous licence MIT.
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
