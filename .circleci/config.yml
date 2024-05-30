@@ -1,16 +1,18 @@
-# This config was automatically generated from your source code
-# Stacks detected: deps:node:.
 version: 2.1
 orbs:
   node: circleci/node@5
 jobs:
   test-node:
     # Install node dependencies and run tests
-    executor: node/default
+    docker:
+      - image: circleci/node:14-browsers # Utilisez une image CircleCI avec Chrome
     steps:
       - checkout
       - node/install-packages:
           pkg-manager: npm
+      - run:
+          name: Install Chrome
+          command: sudo apt-get update && sudo apt-get install -y google-chrome-stable
       - run:
           name: Run tests
           command: npm test --passWithNoTests
